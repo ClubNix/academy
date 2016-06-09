@@ -3,6 +3,14 @@
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
 </div>
 
+<%= if logged_in?(@conn) do %>
+  <p>You are logged in as: <%= current_user(@conn) %></p>
+  <p><%= link "Logout", to: session_path(@conn, :delete) %></p>
+<%= else %>
+  <p>You are not logged in.</p>
+  <p><%= link "Login", to: session_path(@conn, :create) %></p>
+<% end %>
+
 <div class="row marketing">
   <div class="col-lg-6">
     <h4>Resources</h4>

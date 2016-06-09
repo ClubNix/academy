@@ -52,6 +52,8 @@ defmodule Academy.Web do
       import Academy.Router.Helpers
       import Academy.ErrorHelpers
       import Academy.Gettext
+
+      import Academy.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 

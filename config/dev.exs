@@ -40,3 +40,19 @@ config :academy, Academy.Repo,
   database: "academy_dev",
   hostname: "localhost",
   pool_size: 10
+
+
+# ===================================
+# == Example dev.secret.exs config ==
+# ===================================
+
+#use Mix.Config
+#
+#config :academy, Academy.Endpoint.LDAP,
+#  host: "ldap.my-organisation.org",
+#  base: "dc=myorganisation,dc=org",
+#  where: "People",
+#  ssl: true,
+#  port: 636
+
+import_config "dev.secret.exs"
