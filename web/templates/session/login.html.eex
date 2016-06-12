@@ -3,8 +3,8 @@
 
   <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
     <div class="input">
-      <%= text_input f, :login %>
-      <%= label f, :login %>
+      <%= text_input f, :username %>
+      <%= label f, :username %>
     </div>
     <div class="input">
       <%= password_input f, :password %>

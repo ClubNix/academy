@@ -3,9 +3,9 @@ defmodule Academy.Session do
   require Logger
 
   def login(params) do
-    case status = Academy.Endpoint.LDAP.check_credentials(params["login"], params["password"]) do
-      :ok -> Logger.info("User #{params["login"]} successfully authenticated to LDAP")
-      {:error, errMsg} -> Logger.info("User #{params["login"]} failed to authenticate to LDAP: #{errMsg}")
+    case status = Academy.Endpoint.LDAP.check_credentials(params["username"], params["password"]) do
+      :ok -> Logger.info("User #{params["username"]} successfully authenticated to LDAP")
+      {:error, errMsg} -> Logger.info("User #{params["username"]} failed to authenticate to LDAP: #{errMsg}")
     end
     status
   end

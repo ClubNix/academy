@@ -3,8 +3,9 @@
 
 @import '_config'
 
-header
+header[role="banner"]
 	dominant()
+	shadow-elevation-4dp()
 
 	font-size: 1.5em
 
@@ -14,20 +15,18 @@ header
 
 	padding: 3rem
 
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26)
-
-header > h1,
-header > nav
+header[role="banner"] > h1,
+header[role="banner"] > nav
 	display: inline-block
 
-header > h1
+header[role="banner"] > h1
 	title-font()
 	font-size: 3.5rem
 
-header > nav
+header[role="banner"] > nav
 	// Align to the right
 	margin-left: auto
 
-header > nav > ul > li
+header[role="banner"] > nav > ul > li
 	display: inline-block
 	margin: 0 1em

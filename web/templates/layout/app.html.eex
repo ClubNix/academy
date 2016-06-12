@@ -12,7 +12,7 @@
 
 
   <div class="wrapper">
-    <header>
+    <header role="banner">
       <h1><%= link "*Nix Academy", to: page_path(@conn, :index) %></h1>
 
       <nav role="navigation">

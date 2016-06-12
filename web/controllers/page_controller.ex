@@ -6,6 +6,6 @@ defmodule Academy.PageController do
   end
 
   def about(conn, _params) do
-    render conn, "index.html"
+    render conn, "about.html"
   end
 end

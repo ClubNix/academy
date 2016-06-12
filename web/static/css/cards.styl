@@ -1,0 +1,34 @@
+// Browser vendor prefixes library
+@import 'nib'
+
+@import '_config'
+
+.member-card-grid
+	display: flex
+	flex-wrap: wrap
+	justify-content: center
+
+section.member-card
+	flex: 1
+	max-width: 40em
+	min-width: 25em
+	margin: 3em 1em
+
+section.member-card > header
+	display: flex
+	align-items: center
+	margin-bottom: 1em
+
+section.member-card > header > img
+	margin-right: 1em
+	height: 4rem
+	border-radius: 2em
+
+section.member-card > header > h1
+	flex: 1
+	font-size: 2em
+	border-bottom: 1px solid rgba(0, 0, 0, 0.26)
+	padding-bottom: .3em
+
+section.member-card > .skills
+	padding: 1em

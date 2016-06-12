@@ -32,11 +32,34 @@ form > .input input.filled + label
 	transform: translate3d(-1em, -1.1em, 0) scale3d(0.7, 0.7, 1)
 
 form input[type="text"],
-form input[type="mail"],
-form input[type="password"]
+form input[type="tel"],
+form input[type="email"],
+form input[type="url"],
+form input[type="password"],
+form input[type="number"],
+form input[type="search"]
 	title-font()
+	background-color: transparent
 	font-size: 1em
 	border: none
 	border-bottom: 3px solid accent-bg-color
 	padding: 0 .5em .2em .5em
 	width: 12em
+	outline: none
+
+form input[type="submit"]
+	accent()
+	title-font()
+	shadow-elevation-2dp()
+	round-corners()
+
+	font-size: 1em
+	padding: .5em 1.5em
+	border: none
+	outline: none
+
+form input[type="submit"]::-moz-focus-inner
+	border: none
+
+form input[type="submit"]:focus
+	shadow-elevation-8dp()
