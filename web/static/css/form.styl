@@ -1,0 +1,42 @@
+// Browser vendor prefixes library
+@import 'nib'
+
+@import '_config'
+
+section.login
+	max-width: 30em
+
+form
+	text-align: center
+
+form > .input
+	title-font()
+	position: relative
+	display: block
+	margin: 2.5em auto
+	font-size: 1.1em
+
+form > .input input
+	//position: relative
+
+form > .input label
+	color: #AAA
+	position: absolute
+	pointer-events: none
+	left: 8em
+	transition: .3s transform
+	transform: none
+
+form > .input input:focus + label,
+form > .input input.filled + label
+	transform: translate3d(-1em, -1.1em, 0) scale3d(0.7, 0.7, 1)
+
+form input[type="text"],
+form input[type="mail"],
+form input[type="password"]
+	title-font()
+	font-size: 1em
+	border: none
+	border-bottom: 3px solid accent-bg-color
+	padding: 0 .5em .2em .5em
+	width: 12em

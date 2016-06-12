@@ -1,0 +1,59 @@
+// Browser vendor prefixes library
+@import 'nib'
+
+@import '_config'
+
+:root
+	body-font()
+
+/*
+ * Trick for having a sticky footer:
+ * 
+ * Step 1: Wrap everything into a flex container.
+ * Step 2: Make the content wrapper (main) grow with `flex: 1`
+ * Step 3: ...
+ * Step 4: Profit!
+ *
+ */
+
+html, body
+	height: 100%
+
+div.wrapper
+	display: flex
+	min-height: 100%
+	flex-direction: column
+
+main
+	flex: 1
+	padding: 3.5em
+	padding-top: 0
+	font-size: 20px
+
+section
+	padding: 1.5em
+	margin: 3.5em auto 0 auto
+	background-color: white
+	border-radius: 3px
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.26)
+
+section > h1,
+section > h2
+	title-font()
+	padding: .5em
+	margin-bottom: 1.5em
+	border-bottom: 1px solid rgba(0, 0, 0, 0.26)
+
+section > h1
+	font-size: 2em
+	position: sticky
+	top: 0
+	background: white
+
+section > h2
+	font-size: 1.4em
+
+section > p
+	text-indent: 2.5em
+	margin: 1em
+	text-align: justify

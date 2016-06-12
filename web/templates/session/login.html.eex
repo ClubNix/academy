@@ -1,8 +1,16 @@
-<h2>Login</h2>
+<section class="login">
+  <h1>Login</h1>
 
-<%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
-  <%= text_input f, :login, placeholder: "Login" %>
-  <%= password_input f, :password, placeholder: "Password" %>
+  <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+    <div class="input">
+      <%= text_input f, :login %>
+      <%= label f, :login %>
+    </div>
+    <div class="input">
+      <%= password_input f, :password %>
+      <%= label f, :password %>
+    </div>
 
-  <%= submit "Login", class: "btn btn-primary" %>
-<% end %>
+    <%= submit "Login" %>
+  <% end %>
+</section>

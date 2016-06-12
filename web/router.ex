@@ -16,10 +16,11 @@ defmodule Academy.Router do
   scope "/", Academy do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/",      PageController, :index
+    get "/about", PageController, :about
 
-    get    "/login", SessionController, :new
-    post   "/login", SessionController, :create
+    get  "/login", SessionController, :new
+    post "/login", SessionController, :create
 
     get "/logout", SessionController, :delete
   end

@@ -1,0 +1,33 @@
+// Browser vendor prefixes library
+@import 'nib'
+
+@import '_config'
+
+header
+	dominant()
+
+	font-size: 1.5em
+
+	display: flex
+	align-items: center
+	flex-wrap: wrap
+
+	padding: 3rem
+
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26)
+
+header > h1,
+header > nav
+	display: inline-block
+
+header > h1
+	title-font()
+	font-size: 3.5rem
+
+header > nav
+	// Align to the right
+	margin-left: auto
+
+header > nav > ul > li
+	display: inline-block
+	margin: 0 1em

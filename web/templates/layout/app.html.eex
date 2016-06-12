@@ -1,35 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Hello Academy!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-  </head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+  <title>*Nix Academy</title>
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+  <div class="wrapper">
+    <header>
+      <h1><%= link "*Nix Academy", to: page_path(@conn, :index) %></h1>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+      <nav role="navigation">
+        <ul>
+          <li><%= link "About", to: page_path(@conn, :about) %></li>
+          <%= if logged_in?(@conn) do %>
+            <li><%= link "Logout", to: session_path(@conn, :delete) %></li>
+            <%= else %>
+            <li><%= link "Login", to: session_path(@conn, :create) %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+
+    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+    <footer>
+      <ul>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+      </ul>
+    </footer>
+  </div>
+
+  <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 </html>
