@@ -42,6 +42,15 @@ config :academy, Academy.Repo,
   pool_size: 10
 
 
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "Academy",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: %{"k" => "o8miWfgDbuWnyEEefDxIGQ", "kty" => "oct"},
+  serializer: Academy.UserSerializer
+
 # ===================================
 # == Example dev.secret.exs config ==
 # ===================================

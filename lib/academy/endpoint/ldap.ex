@@ -37,10 +37,9 @@ defmodule Academy.Endpoint.LDAP do
      password)
 
    case status do
-     {:gen_tcp_error, _} ->
-       {:ok, ldap_conn} = init(:ok)
-       handle_call({:authenticate, username, password}, :whatever, ldap_conn)
-      _ -> {:reply, status, ldap_conn}
+     :ok -> {:reply, status, ldap_conn}
+     {:error, :invalidCredentials} -> {:reply, status, ldap_conn}
+     {:error, :anonymous_auth} -> {:reply, status, ldap_conn}
     end
 
   end

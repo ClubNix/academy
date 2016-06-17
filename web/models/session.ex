@@ -2,16 +2,28 @@ defmodule Academy.Session do
   alias Academy.User
   require Logger
 
-  def login(params) do
-    case status = Academy.Endpoint.LDAP.check_credentials(params["username"], params["password"]) do
-      :ok -> Logger.info("User #{params["username"]} successfully authenticated to LDAP")
-      {:error, errMsg} -> Logger.info("User #{params["username"]} failed to authenticate to LDAP: #{errMsg}")
+  def login(%{"username" => username, "password" => password}) when username != "" and password != "" do
+    case Academy.Endpoint.LDAP.check_credentials(username, password) do
+      :ok ->
+        Logger.info("User #{username} successfully authenticated to LDAP")
+        {:ok, %User{username: username}}
+      {:error, :invalidCredentials} ->
+        Logger.info("User #{username} failed to authenticate to LDAP: Wrong login/password.")
+        {:error, :invalid_credentials}
+      {:error, error_msg} ->
+        Logger.warn("User #{username} failed to authenticate to LDAP: #{error_msg}")
+        {:error, error_msg}
     end
-    status
+  end
+
+  def login(_params), do: {:error, :missing_field}
+
+  def logout(conn) do
+    Guardian.Plug.sign_out(conn)
   end
 
   def current_user(conn) do
-    Plug.Conn.get_session(conn, :current_user)
+    Guardian.Plug.current_resource(conn)
   end
 
   def logged_in?(conn) do
