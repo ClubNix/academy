@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,500,700,900,100italic,300italic,400,400italic,500italic,700italic,900italic);</style>
+  </defs>
+  <ellipse style="fill: rgb(255, 82, 82);" cx="250" cy="250" rx="249.228" ry="249.228"/>
+  <text x="66.276" y="403.902" style="font-size: 428px; font-family: Roboto; word-spacing: 0px; fill: rgb(255, 255, 255);">✗</text>
+</svg>
