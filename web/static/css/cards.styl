@@ -40,6 +40,7 @@ section.member-card > header > .availability
 	height: 1.5em
 
 section.member-card > header > .availability::after
+	title-font()
 	shadow-elevation-16dp()
 	round-corners()
 	content: attr(data-tooltip)
@@ -50,6 +51,7 @@ section.member-card > header > .availability::after
 	padding: .5em
 	color: white
 	background-color: rgb(92, 97, 108)
+	font-size: .8em
 	transform: translate3d(0, -20%, 0);
 	opacity: 0
 	transition: opacity transition-timing transition-function,
