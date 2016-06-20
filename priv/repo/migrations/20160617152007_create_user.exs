@@ -4,6 +4,7 @@ defmodule Academy.Repo.Migrations.CreateUser do
   def change do
     create table(:users) do
       add :name, :string
+      add :available, :boolean
 
       timestamps
     end

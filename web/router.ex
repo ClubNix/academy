@@ -28,6 +28,8 @@ defmodule Academy.Router do
     post "/login", SessionController, :create
 
     get "/logout", SessionController, :delete
+
+    resources "/users", UserController, except: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

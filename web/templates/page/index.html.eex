@@ -4,7 +4,7 @@
     <header>
       <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
       <h1>Minijackson</h1>
-      <div class="availability" data-tooltip="Available"><img src="images/available.svg" alt="Available"></div>
+      <div class="availability" data-tooltip="Available"><img src="/images/available.svg" alt="Available"></div>
     </header>
     <div class="skills">
       <table>
@@ -46,7 +46,7 @@
     <header>
       <img src="http://placekitten.com/74/74" alt="Profile Picture" class="profile-picture">
       <h1>Nepta</h1>
-      <div class="availability" data-tooltip="Not available"><img src="images/not-available.svg" alt="Not available"></div>
+      <div class="availability" data-tooltip="Not available"><img src="/images/not-available.svg" alt="Not available"></div>
     </header>
     <div class="skills">
       <table>
@@ -88,7 +88,7 @@
     <header>
       <img src="http://placekitten.com/73/73" alt="Profile Picture" class="profile-picture">
       <h1>Frog</h1>
-      <div class="availability" data-tooltip="Not available"><img src="images/not-available.svg" alt="Not available"></div>
+      <div class="availability" data-tooltip="Not available"><img src="/images/not-available.svg" alt="Not available"></div>
     </header>
     <div class="skills">
       <table>
