@@ -9,6 +9,7 @@
 	justify-content: center
 
 section.member-card
+	position: relative
 	flex: 1
 	max-width: 40em
 	min-width: 25em
@@ -19,7 +20,7 @@ section.member-card > header
 	align-items: center
 	margin-bottom: 1em
 
-section.member-card > header > img
+section.member-card > header > img.profile-picture
 	margin-right: 1em
 	height: 4rem
 	border-radius: 2em
@@ -30,5 +31,57 @@ section.member-card > header > h1
 	border-bottom: 1px solid rgba(0, 0, 0, 0.26)
 	padding-bottom: .3em
 
+section.member-card > header > .availability
+	position: absolute
+	top: 0
+	right: 0
+	padding: .5em
+	width: 1.5em
+	height: 1.5em
+
+section.member-card > header > .availability::after
+	title-font()
+	shadow-elevation-16dp()
+	round-corners()
+	content: attr(data-tooltip)
+	position: absolute
+	top: 100%
+	right: -1em
+	white-space: nowrap
+	padding: .5em
+	color: white
+	background-color: rgb(92, 97, 108)
+	font-size: .8em
+	transform: translate3d(0, -20%, 0);
+	opacity: 0
+	transition: opacity transition-timing transition-function,
+	            transform transition-timing transition-function
+
+section.member-card > header > .availability:hover::after
+	transform: translate3d(0, 0, 0);
+	opacity: 1
+
 section.member-card > .skills
-	padding: 1em
+	padding-top: 1em
+	margin-left: 4em
+	flex: 1
+	flex-wrap: wrap
+	align-items: center
+	justify-content: center
+	display: flex
+
+section.member-card > .skills > table
+	display: flex
+	flex: 1
+	margin-bottom: 1em
+
+section.member-card > .skills > table > tbody
+	margin: 0 auto
+
+section.member-card > .skills > table > tbody > tr
+	width: 100%
+
+section.member-card > .skills > table > tbody > tr > td.rating
+	font-family: sans
+	color: accent-bg-color
+	padding-left: 1em

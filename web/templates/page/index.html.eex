@@ -2,43 +2,127 @@
 
   <section class="member-card">
     <header>
-      <img src="http://placekitten.com/75/75" alt="Profile Picture">
+      <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
       <h1>Minijackson</h1>
+      <div class="availability" data-tooltip="Available"><img src="images/available.svg" alt="Available"></div>
     </header>
     <div class="skills">
-      <ul>
-        <li>Elit voluptas dolorem omnis lorem!</li>
-        <li>Dolor illo aspernatur quo optio.</li>
-        <li>Sit quia magnam sed id!</li>
-      </ul>
+      <table>
+        <tbody>
+          <tr>
+            <td>C++</td>
+            <td class="rating">★★★★☆</td>
+          </tr>
+          <tr>
+            <td>Elixir</td>
+            <td class="rating">★☆☆☆☆</td>
+          </tr>
+          <tr>
+            <td>Web</td>
+            <td class="rating">★★★☆☆</td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr>
+            <td>Applications</td>
+            <td class="rating">★★★☆☆</td>
+          </tr>
+          <tr>
+            <td>Linux</td>
+            <td class="rating">★★★★☆</td>
+          </tr>
+          <tr>
+            <td>Python</td>
+            <td class="rating">★★★☆☆</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <section class="member-card">
     <header>
-      <img src="http://placekitten.com/74/74" alt="Profile Picture">
+      <img src="http://placekitten.com/74/74" alt="Profile Picture" class="profile-picture">
       <h1>Nepta</h1>
+      <div class="availability" data-tooltip="Not available"><img src="images/not-available.svg" alt="Not available"></div>
     </header>
     <div class="skills">
-      <ul>
-        <li>Elit voluptas dolorem omnis lorem!</li>
-        <li>Dolor illo aspernatur quo optio.</li>
-        <li>Sit quia magnam sed id!</li>
-      </ul>
+      <table>
+        <tbody>
+          <tr>
+            <td>C++</td>
+            <td class="rating">★★★★☆</td>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td class="rating">★★★★☆</td>
+          </tr>
+          <tr>
+            <td>Lua</td>
+            <td class="rating">★★☆☆☆</td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr>
+            <td>Java</td>
+            <td class="rating">★★★☆☆</td>
+          </tr>
+          <tr>
+            <td>Python</td>
+            <td class="rating">★★★☆☆</td>
+          </tr>
+          <tr>
+            <td>Funtoo</td>
+            <td class="rating">★★★★☆</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <section class="member-card">
     <header>
-      <img src="http://placekitten.com/73/73" alt="Profile Picture">
+      <img src="http://placekitten.com/73/73" alt="Profile Picture" class="profile-picture">
       <h1>Frog</h1>
+      <div class="availability" data-tooltip="Not available"><img src="images/not-available.svg" alt="Not available"></div>
     </header>
     <div class="skills">
-      <ul>
-        <li>Elit voluptas dolorem omnis lorem!</li>
-        <li>Dolor illo aspernatur quo optio.</li>
-        <li>Sit quia magnam sed id!</li>
-      </ul>
+      <table>
+        <tbody>
+          <tr>
+            <td>Troll</td>
+            <td class="rating">★☆☆☆☆</td>
+          </tr>
+          <tr>
+            <td>Bullshit</td>
+            <td class="rating">★★☆☆☆</td>
+          </tr>
+          <tr>
+            <td>Management</td>
+            <td class="rating">★★★★★</td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr>
+            <td>Troll</td>
+            <td class="rating">★☆☆☆☆</td>
+          </tr>
+          <tr>
+            <td>Bullshit</td>
+            <td class="rating">★★☆☆☆</td>
+          </tr>
+          <tr>
+            <td>Management</td>
+            <td class="rating">★★★★★</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
