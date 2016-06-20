@@ -6,7 +6,7 @@ defmodule Academy.Session do
     case Academy.Endpoint.LDAP.check_credentials(username, password) do
       :ok ->
         Logger.info("User #{username} successfully authenticated to LDAP")
-        {:ok, %User{username: username}}
+        {:ok, username}
       {:error, :invalidCredentials} ->
         Logger.info("User #{username} failed to authenticate to LDAP: Wrong login/password.")
         {:error, :invalid_credentials}
