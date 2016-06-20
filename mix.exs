@@ -37,7 +37,10 @@ defmodule Academy.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:guardian, "~> 0.12.0"}]
+     {:guardian, "~> 0.12.0"},
+     {:credo, "~> 0.4", only: [:dev, :test]},
+     {:earmark, "~> 0.1", only: :dev},
+     {:ex_doc, "~> 0.11", only: :dev}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
