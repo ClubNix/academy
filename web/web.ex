@@ -53,7 +53,7 @@ defmodule Academy.Web do
       import Academy.ErrorHelpers
       import Academy.Gettext
 
-      import Academy.Session, only: [current_user: 1, logged_in?: 1]
+      import Academy.SessionController, only: [current_user: 1, logged_in?: 1]
     end
   end
 

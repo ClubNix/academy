@@ -2,8 +2,10 @@ defmodule Academy.SessionController do
   use Academy.Web, :controller
   alias Academy.User
 
+  require Logger
+
   def new(conn, _params) do
-    if Academy.Session.logged_in?(conn) do
+    if logged_in?(conn) do
       conn
         |> put_flash(:warn, "You already are logged in")
         |> redirect(to: page_path(conn, :index))
@@ -13,12 +15,12 @@ defmodule Academy.SessionController do
   end
 
   def create(conn, %{"session" => session_params}) do
-    if Academy.Session.logged_in?(conn) do
+    if logged_in?(conn) do
       conn
         |> put_flash(:warn, "You already are logged in")
         |> redirect(to: page_path(conn, :index))
     else
-      case Academy.Session.login(session_params) do
+      case login(session_params) do
         {:ok, username} ->
           handle_login(conn, username)
         {:error, reason} ->
@@ -28,9 +30,9 @@ defmodule Academy.SessionController do
   end
 
   def delete(conn, _) do
-    if Academy.Session.logged_in?(conn) do
+    if logged_in?(conn) do
       conn
-      |> Academy.Session.logout
+      |> logout
       |> put_flash(:info, "Logged out")
       |> redirect(to: page_path(conn, :index))
     else
@@ -64,4 +66,33 @@ defmodule Academy.SessionController do
         |> redirect(to: session_path(conn, :new))
     end
   end
+
+  def login(%{"username" => username, "password" => password}) when username != "" and password != "" do
+    case Academy.Endpoint.LDAP.check_credentials(username, password) do
+      :ok ->
+        Logger.info("User #{username} successfully authenticated to LDAP")
+        {:ok, username}
+      {:error, :invalid_credentials} ->
+        Logger.info("User #{username} failed to authenticate to LDAP: Wrong login/password.")
+        {:error, :invalid_credentials}
+      {:error, error_msg} ->
+        Logger.warn("User #{username} failed to authenticate to LDAP: #{error_msg}")
+        {:error, error_msg}
+    end
+  end
+
+  def login(_params), do: {:error, :missing_field}
+
+  def logout(conn) do
+    Guardian.Plug.sign_out(conn)
+  end
+
+  def current_user(conn) do
+    Guardian.Plug.current_resource(conn)
+  end
+
+  def logged_in?(conn) do
+    !!current_user(conn)
+  end
+
 end

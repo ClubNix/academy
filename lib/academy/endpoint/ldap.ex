@@ -38,7 +38,7 @@ defmodule Academy.Endpoint.LDAP do
 
    case status do
      :ok -> {:reply, status, ldap_conn}
-     {:error, :invalidCredentials} -> {:reply, status, ldap_conn}
+     {:error, :invalidCredentials} -> {:reply, {:error, :invalid_credentials}, ldap_conn}
      {:error, :anonymous_auth} -> {:reply, status, ldap_conn}
     end
 
@@ -50,24 +50,6 @@ defmodule Academy.Endpoint.LDAP do
 
   def check_credentials(username, password) do
     check_credentials(:erlang.binary_to_list(username), :erlang.binary_to_list(password))
-  end
-
-  def ldap_escape(""), do: ""
-
-  def ldap_escape(<<char, rest :: binary >>) do
-    escaped_char = case char do
-      ?,  -> "\\,"
-      ?#  -> "\\#"
-      ?+  -> "\\+"
-      ?<  -> "\\<"
-      ?>  -> "\\>"
-      ?;  -> "\\;"
-      ?"  -> "\\\""
-      ?=  -> "\\="
-      ?\\ -> "\\\\"
-      _   -> <<char>>
-    end
-    escaped_char <> ldap_escape(rest)
   end
 
   def ldap_escape(''), do: ''
