@@ -1,7 +1,7 @@
 <section class="member-card">
   <header>
     <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
-    <h1><%= @user.name %></h1>
+    <h1><%= String.capitalize @user.name %></h1>
     <%= generate_availability_icon(@user.available) %>
   </header>
   <div class="skills">
