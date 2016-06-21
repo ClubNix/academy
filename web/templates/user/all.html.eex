@@ -1,0 +1,7 @@
+<div class="member-card-grid">
+
+  <%= for user <- @users do %>
+    <%= render "small-card.html", user: user %>
+  <%= end %>
+
+</div>

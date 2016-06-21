@@ -8,7 +8,7 @@ defmodule Academy.SessionController do
     if logged_in?(conn) do
       conn
         |> put_flash(:warn, "You already are logged in")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: user_path(conn, :index))
     else
       render conn, "login.html"
     end
@@ -18,7 +18,7 @@ defmodule Academy.SessionController do
     if logged_in?(conn) do
       conn
         |> put_flash(:warn, "You already are logged in")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: user_path(conn, :index))
     else
       case login(session_params) do
         {:ok, username} ->
@@ -34,11 +34,11 @@ defmodule Academy.SessionController do
       conn
       |> logout
       |> put_flash(:info, "Logged out")
-      |> redirect(to: page_path(conn, :index))
+      |> redirect(to: user_path(conn, :index))
     else
       conn
       |> put_flash(:error, "You are not logged in")
-      |> redirect(to: page_path(conn, :index))
+      |> redirect(to: user_path(conn, :index))
     end
   end
 
@@ -47,7 +47,7 @@ defmodule Academy.SessionController do
     conn
     |> Guardian.Plug.sign_in(user)
     |> put_flash(:info, "You are now logged in as: #{user.name}")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: user_path(conn, :index))
   end
 
   defp handle_error(conn, error) do

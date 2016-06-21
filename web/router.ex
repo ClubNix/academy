@@ -21,7 +21,7 @@ defmodule Academy.Router do
   scope "/", Academy do
     pipe_through [:browser, :browser_auth]
 
-    get "/",      PageController, :index
+    get "/",      UserController, :index
     get "/about", PageController, :about
 
     get  "/login", SessionController, :new

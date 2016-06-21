@@ -7,7 +7,7 @@ defmodule Academy.UserController do
   plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when not action in [:show, :index]
 
   def index(conn, _params) do
-    redirect(conn, to: page_path(conn, :index))
+    render conn, "all.html", users: User |> Repo.all |> Repo.preload([skill_levels: :skill])
   end
 
   def edit(conn, %{"id" => username}) do
