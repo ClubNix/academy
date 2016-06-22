@@ -19,8 +19,9 @@
         <ul>
           <li><%= link "About", to: page_path(@conn, :about) %></li>
           <%= if logged_in?(@conn) do %>
+            <li><%= link "Account", to: user_path(@conn, :edit, current_user(@conn).name) %></li>
             <li><%= link "Logout", to: session_path(@conn, :delete) %></li>
-            <%= else %>
+          <%= else %>
             <li><%= link "Login", to: session_path(@conn, :create) %></li>
           <% end %>
         </ul>

@@ -4,6 +4,11 @@
     <h1><%= String.capitalize @user.name %></h1>
     <%= generate_availability_icon(@user.available) %>
   </header>
+  <%= if @user.bio do %>
+    <p class="bio">
+      <%= @user.bio %>
+    </p>
+  <% end %>
   <div class="skills">
     <table>
       <tbody>

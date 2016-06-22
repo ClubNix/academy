@@ -3,7 +3,8 @@
 
 @import '_config'
 
-section.login
+section.login,
+section.user-edit
 	max-width: 30em
 
 form
@@ -19,7 +20,13 @@ form > .input
 form > .input input
 	//position: relative
 
-form > .input label
+form input[type="text"] label,
+form input[type="tel"] label,
+form input[type="email"] label,
+form input[type="url"] label,
+form input[type="password"] label,
+form input[type="number"] label,
+form input[type="search"] label
 	color: #AAA
 	position: absolute
 	pointer-events: none

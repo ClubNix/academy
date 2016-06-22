@@ -1,0 +1,25 @@
+<section class="user-edit">
+  <h1>Account</h1>
+
+  <%= form_for @changeset, user_path(@conn, :update, @user), fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+
+    <div class="input">
+      <%= checkbox f, :available %>
+      <%= label f, :available %>
+      <%= error_tag f, :available %>
+    </div>
+
+    <div class="input">
+      <%= label f, :bio %>
+      <%= textarea f, :bio %>
+      <%= error_tag f, :bio %>
+    </div>
+
+    <%= submit "Save changes" %>
+  <% end %>
+</section>
