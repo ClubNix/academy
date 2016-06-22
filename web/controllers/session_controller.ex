@@ -46,7 +46,7 @@ defmodule Academy.SessionController do
     user = User.get_or_create(username)
     conn
     |> Guardian.Plug.sign_in(user)
-    |> put_flash(:info, "You are now logged in as: #{user.name}")
+    |> put_flash(:info, "You are now logged in as #{String.capitalize user.name}")
     |> redirect(to: user_path(conn, :index))
   end
 
