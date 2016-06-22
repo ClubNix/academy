@@ -7,16 +7,14 @@
   <div class="skills">
     <table>
       <tbody>
-        <tr>
-          <%= for skill_level <- @user.skill_levels do %>
-            <tr>
-              <td><%= skill_level.skill.name %></td>
-              <td class="rating">
-                <%= generate_rating(skill_level.level) %>
-              </td>
-            </tr>
-          <% end %>
-        </tr>
+        <%= for skill_level <- @user.skill_levels do %>
+          <tr>
+            <td><%= skill_level.skill.name %></td>
+            <td class="rating">
+              <%= generate_rating(skill_level.level) %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

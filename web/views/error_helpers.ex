@@ -10,8 +10,14 @@ defmodule Academy.ErrorHelpers do
   """
   def error_tag(form, field) do
     if error = form.errors[field] do
-      content_tag :span, translate_error(error), class: "help-block"
+      content_tag :span, String.capitalize(translate_error(error)), class: "help-block"
     end
+  end
+
+  def input_group(form, field, fun) do
+    classes = "input"
+    classes = classes <> if form.errors[field], do: " invalid", else: ""
+    content_tag :div, [class: classes], fun
   end
 
   @doc """

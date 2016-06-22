@@ -1,24 +1,24 @@
 <section class="user-edit">
   <h1>Account</h1>
 
-  <%= form_for @changeset, user_path(@conn, :update, @user), fn f -> %>
-    <%= if @changeset.action do %>
-      <div class="alert alert-danger">
-        <p>Oops, something went wrong! Please check the errors below.</p>
-      </div>
-    <% end %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-error">
+      Oops, something went wrong! Please check the errors below.
+    </div>
+  <% end %>
 
-    <div class="input">
+  <%= form_for @changeset, user_path(@conn, :update, @user), fn f -> %>
+    <%= input_group f, :available do %>
       <%= checkbox f, :available %>
       <%= label f, :available %>
       <%= error_tag f, :available %>
-    </div>
+    <% end %>
 
-    <div class="input">
+    <%= input_group f, :bio do %>
       <%= label f, :bio %>
       <%= textarea f, :bio %>
       <%= error_tag f, :bio %>
-    </div>
+    <% end %>
 
     <%= submit "Save changes" %>
   <% end %>

@@ -47,7 +47,7 @@ defmodule Academy.UserController do
         |> put_flash(:info, "User updated successfully.")
         |> redirect(to: user_path(conn, :show, user.name))
       {:error, changeset} ->
-        render(conn, "edit.html", user: user.name, changeset: changeset)
+        render(conn, "edit.html", user: user, changeset: changeset)
     end
   end
 

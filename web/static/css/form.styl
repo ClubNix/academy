@@ -3,34 +3,27 @@
 
 @import '_config'
 
-section.login,
+section.login
 section.user-edit
 	max-width: 30em
 
 form
-	text-align: center
+	margin: 0 auto
+	max-width: 15em
 
 form > .input
 	title-font()
 	position: relative
 	display: block
-	margin: 2.5em auto
+	margin: 1.5em auto
 	font-size: 1.1em
 
-form > .input input
-	//position: relative
-
-form input[type="text"] label,
-form input[type="tel"] label,
-form input[type="email"] label,
-form input[type="url"] label,
-form input[type="password"] label,
-form input[type="number"] label,
-form input[type="search"] label
+form > .input label.text-input
 	color: #AAA
 	position: absolute
 	pointer-events: none
-	left: 8em
+	left: .7em
+	top: 0
 	transition: .3s transform
 	transform: none
 
@@ -51,8 +44,10 @@ form input[type="search"]
 	border: none
 	border-bottom: 3px solid accent-bg-color
 	padding: 0 .5em .2em .5em
-	width: 12em
+	box-sizing: border-box
+	width: 100%
 	outline: none
+	margin-bottom: 1em
 
 form input[type="submit"]
 	accent()
@@ -60,8 +55,10 @@ form input[type="submit"]
 	shadow-elevation-2dp()
 	round-corners()
 
-	font-size: 1em
+	display: block
 	padding: .5em 1.5em
+	margin: 0 auto
+	font-size: 1em
 	border: none
 	outline: none
 
@@ -70,3 +67,18 @@ form input[type="submit"]::-moz-focus-inner
 
 form input[type="submit"]:focus
 	shadow-elevation-8dp()
+
+form textarea
+	display: block
+	margin-top: 1em
+	box-sizing: border-box
+	width: 100%
+	height: 10em
+
+form > .input > .help-block
+	display: block
+	color: error-color
+	font-size: .8em
+	margin: .6em 0
+	box-sizing: border-box
+	width: 100%

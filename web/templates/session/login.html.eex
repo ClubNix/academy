@@ -4,11 +4,11 @@
   <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
     <div class="input">
       <%= text_input f, :username %>
-      <%= label f, :username %>
+      <%= label f, :username, class: "text-input" %>
     </div>
     <div class="input">
       <%= password_input f, :password %>
-      <%= label f, :password %>
+      <%= label f, :password, class: "text-input" %>
     </div>
 
     <%= submit "Login" %>

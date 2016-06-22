@@ -8,7 +8,7 @@
 
 /*
  * Trick for having a sticky footer:
- * 
+ *
  * Step 1: Wrap everything into a flex container.
  * Step 2: Make the content wrapper (main) grow with `flex: 1`
  * Step 3: ...
@@ -51,6 +51,7 @@ section > h1
 	position: sticky
 	top: 0
 	background: white
+	z-index: 1
 
 section > h2
 	font-size: 1.4em
@@ -59,3 +60,30 @@ section > p
 	text-indent: 2.5em
 	margin: 1em
 	text-align: justify
+
+.alert:not(:empty)
+	shadow-elevation-4dp()
+	title-font()
+	font-weight: bold
+
+.wrapper > .alert:not(:empty)
+	padding: 1em
+	margin: 1.2em auto 0 auto
+	max-width: 30em
+
+section > .alert:not(:empty)
+	padding: 1em
+	margin: 0 2em
+	max-width: 30em
+
+.alert-error
+	background-color: error-color
+	color: white
+
+.alert-warn
+	background-color: warning-color
+	color: black
+
+.alert-info
+	background-color: info-color
+	color: white
