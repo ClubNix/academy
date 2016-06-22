@@ -12,6 +12,8 @@ defmodule Academy.User do
     field :available, :boolean
 
     has_many :skill_levels, Academy.SkillLevel
+    has_many :skills, through: [:skill_levels, :skill]
+    has_many :skill_categories, through: [:skill_levels, :skill, :skill_category]
 
     timestamps
   end

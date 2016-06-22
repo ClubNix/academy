@@ -1,16 +1,13 @@
-defmodule Academy.Skill do
+defmodule Academy.SkillCategory do
   use Academy.Web, :model
 
-  schema "skills" do
+  schema "skill_categories" do
     field :name, :string
-    field :description, :string
-
-    belongs_to :skill_category, Academy.SkillCategory
 
     timestamps
   end
 
-  @required_fields ~w(name description)
+  @required_fields ~w(name)
   @optional_fields ~w()
 
   @doc """
@@ -22,5 +19,6 @@ defmodule Academy.Skill do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(:name)
   end
 end
