@@ -1,5 +1,5 @@
 <section class="user-edit">
-  <h1>Account</h1>
+  <h1>My account</h1>
 
   <%= if @changeset.action do %>
     <div class="alert alert-error">
