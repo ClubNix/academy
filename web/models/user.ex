@@ -13,7 +13,7 @@ defmodule Academy.User do
 
     has_many :skill_levels, Academy.SkillLevel
     has_many :skills, through: [:skill_levels, :skill]
-    has_many :skill_categories, through: [:skill_levels, :skill, :skill_category]
+    has_many :skill_categories, through: [:skills, :category]
 
     timestamps
   end

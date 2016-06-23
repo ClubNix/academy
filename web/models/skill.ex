@@ -5,7 +5,7 @@ defmodule Academy.Skill do
     field :name, :string
     field :description, :string
 
-    belongs_to :skill_category, Academy.SkillCategory
+    belongs_to :category, Academy.SkillCategory
 
     timestamps
   end
