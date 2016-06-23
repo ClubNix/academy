@@ -3,22 +3,25 @@
 
 @import '_config'
 
-section.login
+section.login,
 section.user-edit
 	max-width: 30em
+
+section.login h2,
+section.user-edit h2
+	font-size: 1.5em
 
 form
 	margin: 0 auto
 	max-width: 15em
 
-form > .input
+form .input
 	title-font()
 	position: relative
-	display: block
 	margin: 1.5em auto
 	font-size: 1.1em
 
-form > .input label.text-input
+form .input label.text-input
 	color: #AAA
 	position: absolute
 	pointer-events: none
@@ -27,8 +30,8 @@ form > .input label.text-input
 	transition: .3s transform
 	transform: none
 
-form > .input input:focus + label,
-form > .input input.filled + label
+form .input input:focus + label,
+form .input input.filled + label
 	transform: translate3d(-1em, -1.1em, 0) scale3d(0.7, 0.7, 1)
 
 form input[type="text"],
@@ -75,10 +78,19 @@ form textarea
 	width: 100%
 	height: 10em
 
-form > .input > .help-block
+form .input > .help-block
 	display: block
 	color: error-color
 	font-size: .8em
 	margin: .6em 0
 	box-sizing: border-box
 	width: 100%
+
+form > table
+	margin: 2em 0
+
+form > table tr.input
+	margin: .7em auto
+
+form > table td.name
+	padding-right: 2.5em

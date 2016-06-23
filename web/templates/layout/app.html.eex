@@ -20,6 +20,7 @@
           <li><%= link "About", to: page_path(@conn, :about) %></li>
           <%= if logged_in?(@conn) do %>
             <li><%= link "My account", to: user_path(@conn, :edit) %></li>
+            <li><%= link "My skills", to: skill_level_path(@conn, :edit) %></li>
             <li><%= link "Logout", to: session_path(@conn, :delete) %></li>
           <%= else %>
             <li><%= link "Login", to: session_path(@conn, :create) %></li>

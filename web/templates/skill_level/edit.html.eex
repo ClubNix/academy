@@ -1,0 +1,24 @@
+<section class="user-edit">
+  <h1>My Skills</h1>
+
+  <%= form_for @conn, skill_level_path(@conn, :update), [as: :skill_levels], fn f -> %>
+
+    <%= for skill_category <- @skill_categories do %>
+      <h2><%= Dict.get(skill_category, :category).name %></h2>
+      <table class="skills">
+        <%= for skill <- Dict.get(skill_category, :skills) do %>
+          <tr class="input">
+            <td class="name"><%= rating_label skill %></td>
+            <td class="value"><%= rating_input @user, skill %></td>
+            <!-- <td class="cancel">✗</td> -->
+            <!-- <td class="level">☆☆☆☆☆</td> -->
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <%= submit "Save changes" %>
+
+  <% end %>
+
+</section>

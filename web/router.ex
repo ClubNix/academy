@@ -36,6 +36,9 @@ defmodule Academy.Router do
     patch    "/account/edit", UserController, :update
     put      "/account/edit", UserController, :update
     delete   "/account/edit", UserController, :delete
+
+    get "/account/skills/edit", SkillLevelController, :edit
+    post "/account/skills", SkillLevelController, :update
   end
 
   # Other scopes may use custom stacks.
