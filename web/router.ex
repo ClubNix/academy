@@ -29,7 +29,13 @@ defmodule Academy.Router do
 
     get "/logout", SessionController, :delete
 
-    resources "/users", UserController, except: [:new, :create]
+    resources "/users", UserController, only: [:index, :show]
+
+    get      "/account", UserController, :show
+    get      "/account/edit", UserController, :edit
+    patch    "/account/edit", UserController, :update
+    put      "/account/edit", UserController, :update
+    delete   "/account/edit", UserController, :delete
   end
 
   # Other scopes may use custom stacks.

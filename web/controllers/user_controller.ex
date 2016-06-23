@@ -10,15 +10,9 @@ defmodule Academy.UserController do
     render conn, "all.html", users: User |> Repo.all |> Repo.preload(:skills)
   end
 
-  def edit(conn, %{"id" => username}) do
+  def edit(conn, _params) do
     current_user = SessionController.current_user(conn)
-    if username !== current_user.name do
-      conn
-      |> put_status(401)
-      |> render(Academy.ErrorView, :"401")
-    else
-      render conn, "edit.html", user: current_user, changeset: User.changeset(current_user)
-    end
+    render conn, "edit.html", user: current_user, changeset: User.changeset(current_user)
   end
 
   def show(conn, %{"id" => username}) do
@@ -30,7 +24,12 @@ defmodule Academy.UserController do
     end
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
+  def show(conn, _params) do
+    user = SessionController.current_user(conn)
+    redirect(conn, to: user_path(conn, :show, user.name))
+  end
+
+  def update(conn, %{"user" => user_params}) do
     user_params = Map.update!(user_params, "bio", fn value ->
       case value do
         "" -> nil
@@ -38,7 +37,7 @@ defmodule Academy.UserController do
       end
     end)
 
-    user = Repo.get!(User, id)
+    user = SessionController.current_user(conn)
     changeset = User.changeset(user, user_params)
 
     case Repo.update(changeset) do
