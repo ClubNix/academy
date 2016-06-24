@@ -1,6 +1,8 @@
 defmodule Academy.UserView do
   use Academy.Web, :view
 
+  alias Academy.SessionController
+
   use Phoenix.HTML
 
   def full_ratings(skill_levels) do
@@ -41,15 +43,23 @@ defmodule Academy.UserView do
   end
 
   def availability_icon(true) do
-    {:safe, "<div class=\"availability\" data-tooltip=\"Available\"><img src=\"/images/available.svg\" alt=\"Available\"></div>"}
+    {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Available\"><img src=\"/images/available.svg\" alt=\"Available\"></div>"}
   end
 
   def availability_icon(false) do
-    {:safe, "<div class=\"availability\" data-tooltip=\"Not available\"><img src=\"/images/not-available.svg\" alt=\"Available\"></div>"}
+    {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Not available\"><img src=\"/images/not-available.svg\" alt=\"Available\"></div>"}
   end
 
   def availability_icon(nil) do
-    {:safe, "<div class=\"availability\" data-tooltip=\"Availability unknown\">?</div>"}
+    {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Availability unknown\">?</div>"}
+  end
+
+  def edit_button(conn, username) do
+    if username === SessionController.current_user(conn).name do
+      link "✎", class: "edit-button tooltip", data: [tooltip: "Edit profile"], to: user_path(conn, :edit)
+    else
+      nil
+    end
   end
 
 end

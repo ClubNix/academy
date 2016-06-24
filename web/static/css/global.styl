@@ -5,3 +5,27 @@
 
 h1, h2, h3, h4
 	title-font()
+
+.tooltip::after
+	title-font()
+	shadow-elevation-16dp()
+	round-corners()
+	content: attr(data-tooltip)
+	position: absolute
+	top: 100%
+	right: -1em
+	white-space: nowrap
+	padding: .5em
+	color: white
+	background-color: rgb(92, 97, 108)
+	font-size: .8em
+	transform: translate3d(0, -20%, 0);
+	opacity: 0
+	pointer-events: none
+	transition: opacity transition-timing transition-function,
+	            transform transition-timing transition-function
+
+.tooltip:hover::after
+	transform: translate3d(0, 0, 0);
+	opacity: 1
+

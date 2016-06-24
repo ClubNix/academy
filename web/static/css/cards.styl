@@ -24,35 +24,19 @@ section.member-card > header > h1
 	border-bottom: 1px solid rgba(0, 0, 0, 0.26)
 	padding-bottom: .3em
 
-section.member-card > header > .availability
+section.member-card > header > .availability,
+section.member-card > header > .edit-button
 	position: absolute
 	top: 0
-	right: 0
 	padding: .5em
 	width: 1.5em
 	height: 1.5em
 
-section.member-card > header > .availability::after
-	title-font()
-	shadow-elevation-16dp()
-	round-corners()
-	content: attr(data-tooltip)
-	position: absolute
-	top: 100%
-	right: -1em
-	white-space: nowrap
-	padding: .5em
-	color: white
-	background-color: rgb(92, 97, 108)
-	font-size: .8em
-	transform: translate3d(0, -20%, 0);
-	opacity: 0
-	transition: opacity transition-timing transition-function,
-	            transform transition-timing transition-function
+section.member-card > header > .availability
+	right: 0
 
-section.member-card > header > .availability:hover::after
-	transform: translate3d(0, 0, 0);
-	opacity: 1
+section.member-card > header > .edit-button
+	right: 2em
 
 section.member-card > .skills
 	padding-top: 1em
