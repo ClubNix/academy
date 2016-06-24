@@ -47,7 +47,7 @@ defmodule Academy.UserView do
   end
 
   def availability_icon(false) do
-    {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Not available\"><img src=\"/images/not-available.svg\" alt=\"Available\"></div>"}
+    {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Unavailable\"><img src=\"/images/not-available.svg\" alt=\"Available\"></div>"}
   end
 
   def availability_icon(nil) do
