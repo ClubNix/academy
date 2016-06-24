@@ -55,10 +55,14 @@ defmodule Academy.UserView do
   end
 
   def edit_button(conn, username) do
-    if username === SessionController.current_user(conn).name do
-      link "✎", class: "edit-button tooltip", data: [tooltip: "Edit profile"], to: user_path(conn, :edit)
-    else
-      nil
+    user = SessionController.current_user(conn)
+    case user do
+      ^username -> 
+        link "✎",
+          class: "edit-button tooltip",
+          data: [tooltip: "Edit profile"],
+          to: user_path(conn, :edit)
+      _ -> nil
     end
   end
 
