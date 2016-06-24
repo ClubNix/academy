@@ -20,7 +20,7 @@ defmodule Academy.UserController do
       nil -> conn
              |> put_status(404)
              |> render(Academy.ErrorView, :"404")
-      user -> render conn, "full-card.html", user: user |> Repo.preload([skill_levels: :skill])
+      user -> render conn, "full-card.html", user: user |> Repo.preload([skills: :category])
     end
   end
 

@@ -1,8 +1,8 @@
-<section class="member-card">
+<section class="member-card full">
   <header>
     <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
     <h1><%= String.capitalize @user.name %></h1>
-    <%= generate_availability_icon(@user.available) %>
+    <%= availability_icon(@user.available) %>
   </header>
   <%= if @user.bio do %>
     <p class="bio">
@@ -10,19 +10,6 @@
     </p>
   <% end %>
   <div class="skills">
-    <table>
-      <tbody>
-        <tr>
-          <%= for skill_level <- @user.skill_levels do %>
-            <tr>
-              <td><%= skill_level.skill.name %></td>
-              <td class="rating">
-                <%= generate_rating(skill_level.level) %>
-              </td>
-            </tr>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
+    <%= full_ratings @user.skill_levels %>
   </div>
 </section>

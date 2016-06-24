@@ -3,22 +3,10 @@
 
 @import '_config'
 
-.member-card-grid
-	display: flex
-	flex-wrap: wrap
-	justify-content: center
-
 section.member-card
 	position: relative
 	max-width: 40em
 	min-width: 25em
-
-.member-card-grid > section.member-card
-	flex: 1
-	margin: 3em 1em
-
-main > section.member-card
-	margin: 3em auto
 
 section.member-card > header
 	display: flex
@@ -75,18 +63,51 @@ section.member-card > .skills
 	justify-content: center
 	display: flex
 
-section.member-card > .skills > table
+section.member-card > .skills table
 	display: flex
 	flex: 1
 	margin-bottom: 1em
 
-section.member-card > .skills > table > tbody
+section.member-card > .skills table > tbody
 	margin: 0 auto
 
-section.member-card > .skills > table > tbody > tr
+section.member-card > .skills table > tbody > tr
 	width: 100%
 
-section.member-card > .skills > table > tbody > tr > td.rating
+section.member-card > .skills table > tbody > tr > td.rating
 	font-family: sans
 	color: accent-bg-color
 	padding-left: 1em
+
+// ================
+// == Grid cards ==
+// ================
+
+.member-card-grid
+	display: flex
+	flex-wrap: wrap
+	justify-content: center
+
+.member-card-grid > section.member-card
+	flex: 1
+	margin: 3em 1em
+
+// ================
+// == Full cards ==
+// ================
+
+section.member-card.full
+	flex-wrap: wrap
+	margin: 3em auto
+	max-width: 50em
+	justify-content: center
+
+section.member-card.full .category
+	min-width: 15em
+	margin: 0 1em 1em 1em
+
+section.member-card.full .category h2
+	margin: 1em 0
+
+section.member-card.full .category table > tbody
+	margin: 0 0 0 2em

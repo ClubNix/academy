@@ -1,19 +1,54 @@
 defmodule Academy.UserView do
   use Academy.Web, :view
 
-  def generate_rating(level, max \\ 5, full_str \\ "★", empty_str \\ "☆") do
+  use Phoenix.HTML
+
+  def full_ratings(skill_levels) do
+    skill_levels
+    |> Enum.group_by(fn skill_level -> skill_level.skill.category.name end)
+    |> Enum.map(fn {category_name, skill_levels} ->
+      content_tag :div,
+        [content_tag(:h2, category_name), rating_table(skill_levels)],
+        class: "category"
+    end)
+  end
+
+  def small_ratings(skill_levels) do
+    skill_length = length(skill_levels)
+    if skill_length > 4 do
+      split_size = round(Float.ceil(skill_length / 2))
+      skill_levels
+      |> Enum.chunk(split_size, split_size, [])
+      |> Enum.map(&rating_table/1)
+    else
+      rating_table(skill_levels)
+    end
+  end
+
+  def rating_table(skill_levels) do
+    content_tag :table do
+      Enum.map(skill_levels, fn skill_level ->
+        content_tag :tr do
+          [content_tag(:td, skill_level.skill.name),
+           content_tag(:td, rating(skill_level.level), class: "rating")]
+        end
+      end)
+    end
+  end
+
+  def rating(level, max \\ 5, full_str \\ "★", empty_str \\ "☆") do
     String.duplicate(full_str, level) <> String.duplicate(empty_str, max - level)
   end
 
-  def generate_availability_icon(true) do
+  def availability_icon(true) do
     {:safe, "<div class=\"availability\" data-tooltip=\"Available\"><img src=\"/images/available.svg\" alt=\"Available\"></div>"}
   end
 
-  def generate_availability_icon(false) do
+  def availability_icon(false) do
     {:safe, "<div class=\"availability\" data-tooltip=\"Not available\"><img src=\"/images/not-available.svg\" alt=\"Available\"></div>"}
   end
 
-  def generate_availability_icon(nil) do
+  def availability_icon(nil) do
     {:safe, "<div class=\"availability\" data-tooltip=\"Availability unknown\">?</div>"}
   end
 

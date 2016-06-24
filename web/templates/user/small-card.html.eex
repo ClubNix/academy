@@ -2,20 +2,9 @@
   <header>
     <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
     <h1><%= String.capitalize @user.name %></h1>
-    <%= generate_availability_icon(@user.available) %>
+    <%= availability_icon(@user.available) %>
   </header>
   <div class="skills">
-    <table>
-      <tbody>
-        <%= for skill_level <- @user.skill_levels do %>
-          <tr>
-            <td><%= skill_level.skill.name %></td>
-            <td class="rating">
-              <%= generate_rating(skill_level.level) %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= small_ratings @user.skill_levels %>
   </div>
 </section>
