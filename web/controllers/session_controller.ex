@@ -58,7 +58,7 @@ defmodule Academy.SessionController do
         |> redirect(to: session_path(conn, :new))
       :invalid_credentials ->
         conn
-        |> put_flash(:error, "Wrong email or password")
+        |> put_flash(:error, "Wrong username or password")
         |> redirect(to: session_path(conn, :new))
       _ ->
         conn
