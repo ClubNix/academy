@@ -31,7 +31,7 @@ defmodule Academy.Router do
 
     resources "/users", UserController, only: [:index, :show]
 
-    get      "/account", UserController, :show
+    get      "/account", UserController, :show_self
     get      "/account/edit", UserController, :edit
     patch    "/account/edit", UserController, :update
     put      "/account/edit", UserController, :update

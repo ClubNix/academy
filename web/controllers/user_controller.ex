@@ -24,7 +24,7 @@ defmodule Academy.UserController do
     end
   end
 
-  def show(conn, _params) do
+  def show_self(conn, _params) do
     user = SessionController.current_user(conn)
     redirect(conn, to: user_path(conn, :show, user.name))
   end
