@@ -10,7 +10,7 @@ defmodule Academy.SkillLevelController do
 
   import Ecto.Query, only: [where: 3]
 
-  plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when not action in [:show, :index]
+  plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__]
 
   def edit(conn, _params) do
     user = SessionController.current_user(conn)
@@ -66,5 +66,12 @@ defmodule Academy.SkillLevelController do
           SkillLevel.changeset(skill_level, %{level: level}))
       end
   end
+
+  def unauthenticated(conn, _params) do
+    conn
+    |> put_status(401)
+    |> render(Academy.ErrorView, :"401")
+  end
+
 
 end
