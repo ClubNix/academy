@@ -26,8 +26,10 @@ defmodule Academy.ModelCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Academy.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(Academy.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(Academy.Repo, {:shared, self()})
     end
 
     :ok

@@ -5,6 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
+config :academy, ecto_repos: [Academy.Repo]
+
 # Configures the endpoint
 config :academy, Academy.Endpoint,
   url: [host: "localhost"],
