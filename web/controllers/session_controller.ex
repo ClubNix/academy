@@ -51,20 +51,15 @@ defmodule Academy.SessionController do
   end
 
   defp handle_error(conn, error) do
-    case error do
+    conn = case error do
       :missing_field ->
-        conn
-        |> put_flash(:error, "Please ensure all required fields are filled")
-        |> redirect(to: session_path(conn, :new))
+        put_flash(conn, :error, "Please ensure all required fields are filled")
       :invalid_credentials ->
-        conn
-        |> put_flash(:error, "Wrong username or password")
-        |> redirect(to: session_path(conn, :new))
+        put_flash(conn, :error, "Wrong username or password")
       _ ->
-        conn
-        |> put_flash(:error, "Internal error. Please try again.")
-        |> redirect(to: session_path(conn, :new))
+        put_flash(conn, :error, "Internal error. Please try again.")
     end
+    render conn, "login.html"
   end
 
   def login(%{"username" => username, "password" => password}) when username != "" and password != "" do
