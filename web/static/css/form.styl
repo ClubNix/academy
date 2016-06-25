@@ -3,9 +3,11 @@
 
 @import '_config'
 
-section.login,
-section.user-edit
+section.login
 	max-width: 30em
+
+section.user-edit
+	max-width: 40em
 
 section.login h2,
 section.user-edit h2
@@ -13,7 +15,12 @@ section.user-edit h2
 
 form
 	margin: 0 auto
+
+.login form
 	max-width: 15em
+
+.user-edit form
+	max-width: 20em
 
 form .input
 	title-font()
