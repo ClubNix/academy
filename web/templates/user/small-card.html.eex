@@ -1,10 +1,12 @@
 <section class="member-card">
-  <header>
-    <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
-    <h1><%= String.capitalize @user.name %></h1>
-    <%= availability_icon(@user.available) %>
-  </header>
-  <div class="skills">
-    <%= small_ratings @user.skill_levels %>
-  </div>
+  <%= link to: user_path(@conn, :show, @user.name) do %>
+    <header>
+      <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
+      <h1><%= String.capitalize @user.name %></h1>
+      <%= availability_icon(@user.available) %>
+    </header>
+    <div class="skills">
+      <%= small_ratings @user.skill_levels %>
+    </div>
+  <% end %>
 </section>

@@ -5,40 +5,41 @@
 
 section.member-card
 	position: relative
-	max-width: 40em
-	min-width: 25em
+	box-sizing: padding-box
+	max-width: 43em
+	min-width: 28em
 
-section.member-card > header
+section.member-card header
 	display: flex
 	align-items: center
 	margin-bottom: 1em
 
-section.member-card > header > img.profile-picture
+section.member-card header > img.profile-picture
 	margin-right: 1em
 	height: 4rem
 	border-radius: 2em
 
-section.member-card > header > h1
+section.member-card header > h1
 	flex: 1
 	font-size: 2em
 	border-bottom: 1px solid rgba(0, 0, 0, 0.26)
 	padding-bottom: .3em
 
-section.member-card > header > .availability,
-section.member-card > header > .edit-button
+section.member-card header > .availability,
+section.member-card header > .edit-button
 	position: absolute
 	top: 0
 	padding: .5em
 	width: 1.5em
 	height: 1.5em
 
-section.member-card > header > .availability
+section.member-card header > .availability
 	right: 0
 
-section.member-card > header > .edit-button
+section.member-card header > .edit-button
 	right: 2.5em
 
-section.member-card > .skills
+section.member-card .skills
 	padding-top: 1em
 	margin-left: 4em
 	flex: 1
@@ -47,23 +48,23 @@ section.member-card > .skills
 	justify-content: center
 	display: flex
 
-section.member-card > .skills table
+section.member-card .skills table
 	display: flex
 	flex: 1
 	margin-bottom: 1em
 
-section.member-card > .skills table > tbody
+section.member-card .skills table > tbody
 	margin: 0 auto
 
-section.member-card > .skills table > tbody > tr
+section.member-card .skills table > tbody > tr
 	width: 100%
 
-section.member-card > .skills table > tbody > tr > td.rating
+section.member-card .skills table > tbody > tr > td.rating
 	font-family: sans
 	color: accent-bg-color
 	padding-left: 1em
 
-section.member-card > .skills table > tbody > tr > td.skill-name
+section.member-card .skills table > tbody > tr > td.skill-name
 	position: relative
 
 // ================
@@ -76,8 +77,22 @@ section.member-card > .skills table > tbody > tr > td.skill-name
 	justify-content: center
 
 .member-card-grid > section.member-card
+	box-shadow: none
+	display: flex
 	flex: 1
 	margin: 3em 1em
+	padding: 0
+
+section.member-card > a
+	shadow-elevation-2dp()
+	position: relative
+	display: block
+	flex: 1
+	padding: 1.5em
+	box-sizing: border-box
+
+section.member-card > a:hover
+	shadow-elevation-8dp()
 
 // ================
 // == Full cards ==
