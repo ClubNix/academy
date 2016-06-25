@@ -31,7 +31,8 @@ defmodule Academy.UserView do
     content_tag :table do
       Enum.map(skill_levels, fn skill_level ->
         content_tag :tr do
-          [content_tag(:td, skill_level.skill.name),
+          [content_tag(:td, skill_level.skill.name, class: "skill-name tooltip",
+            data: [tooltip: skill_level.skill.description]),
            content_tag(:td, rating(skill_level.level), class: "rating")]
         end
       end)
