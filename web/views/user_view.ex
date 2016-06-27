@@ -7,6 +7,7 @@ defmodule Academy.UserView do
 
   def full_ratings(skill_levels) do
     skill_levels
+    |> Enum.sort(&(&1.level < &2.level))
     |> Enum.group_by(fn skill_level -> skill_level.skill.category.name end)
     |> Enum.map(fn {category_name, skill_levels} ->
       content_tag :div,
@@ -21,6 +22,11 @@ defmodule Academy.UserView do
       split_size = round(Float.ceil(skill_length / 2))
       skill_levels
       |> Enum.chunk(split_size, split_size, [])
+      |> Enum.map(fn chunk ->
+        chunk
+        |> Enum.sort(&(&1.level > &2.level))
+        |> Enum.take 5
+      end)
       |> Enum.map(&rating_table/1)
     else
       rating_table(skill_levels)
