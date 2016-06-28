@@ -7,9 +7,9 @@ defmodule Academy.UserView do
 
   def full_ratings(skill_levels) do
     skill_levels
-    |> Enum.sort(&(&1.level < &2.level))
     |> Enum.group_by(fn skill_level -> skill_level.skill.category.name end)
     |> Enum.map(fn {category_name, skill_levels} ->
+      skill_levels = Enum.sort(skill_levels, &(&1.level > &2.level))
       content_tag :div,
         [content_tag(:h2, category_name), rating_table(skill_levels)],
         class: "category"
