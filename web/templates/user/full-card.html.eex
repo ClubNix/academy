@@ -1,6 +1,6 @@
 <section class="member-card full">
   <header>
-    <img src="http://placekitten.com/75/75" alt="Profile Picture" class="profile-picture">
+    <%= avatar @user %>
     <h1><%= String.capitalize @user.name %></h1>
     <%= availability_icon(@user.available) %>
     <%= edit_buttons @conn, @user.name %>

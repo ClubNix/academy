@@ -6,6 +6,7 @@ defmodule Academy.Repo.Migrations.CreateUser do
       add :name, :string
       add :bio, :text
       add :available, :boolean
+      add :avatar, :string
 
       timestamps
     end

@@ -2,6 +2,7 @@ defmodule Academy.UserView do
   use Academy.Web, :view
 
   alias Academy.SessionController
+  alias Academy.Avatar
 
   use Phoenix.HTML
 
@@ -47,6 +48,19 @@ defmodule Academy.UserView do
 
   def rating(level, max \\ 5, full_str \\ "★", empty_str \\ "☆") do
     String.duplicate(full_str, level) <> String.duplicate(empty_str, max - level)
+  end
+
+  def avatar(user) do
+    {:safe, "<img src=\"#{avatar_url user}\" alt=\"Profile picture\" class=\"profile-picture\">"}
+  end
+
+  def avatar_url(user) do
+    # Drop the priv/static part
+    split_path = Avatar.url({user.avatar, user})
+    |> Path.split
+    |> Enum.drop(2)
+
+    Path.join ["/" | split_path]
   end
 
   def availability_icon(true) do

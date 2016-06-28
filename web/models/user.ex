@@ -1,6 +1,8 @@
 defmodule Academy.User do
   use Academy.Web, :model
 
+  use Arc.Ecto.Schema
+
   require Logger
 
   alias Academy.User
@@ -10,6 +12,7 @@ defmodule Academy.User do
     field :name, :string
     field :bio, :string
     field :available, :boolean
+    field :avatar, Academy.Avatar.Type
 
     has_many :skill_levels, Academy.SkillLevel
     has_many :skills, through: [:skill_levels, :skill]
@@ -30,15 +33,14 @@ defmodule Academy.User do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, [:avatar])
     |> validate_length(:bio, min: 10, max: 140)
+    #|> validate_avatar(params)
   end
 
-  def get_or_create(username) do
-    case Repo.get_by(User, name: username) do
-      nil -> Logger.info("Creating user #{username} in database")
-        Repo.insert! User.changeset(%User{name: username}, %{})
-      user -> user
-    end
+  def validate_avatar(changeset, params) do
+    IO.inspect params
+    changeset
   end
 
 end

@@ -1,4 +1,7 @@
-%{"base64url": {:hex, :base64url, "0.0.1", "36a90125f5948e3afd7be97662a1504b934dd5dac78451ca6e9abf85a10286be", [:rebar], []},
+%{"alchemic_avatar": {:hex, :alchemic_avatar, "0.1.2", "fb7a71f3c7d8fdd860e23e36017cb19015617a1e729c9c6245872a004248b98a", [:mix], []},
+  "arc": {:hex, :arc, "0.5.3", "2bc1b4ce8c1064ae12015f5612f3e3853d354859905bb34088b3579bf34a519d", [:mix], [{:httpoison, "~> 0.7", [hex: :httpoison, optional: true]}, {:poison, "~> 1.2 or ~> 2.0", [hex: :poison, optional: true]}, {:ex_aws, "~> 0.4.10 or ~> 0.5.0", [hex: :ex_aws, optional: true]}]},
+  "arc_ecto": {:hex, :arc_ecto, "0.4.2", "9f7fd7da4dfa8d16292bb6a49a65971b12c663cb4c9711674d6302d6272f9e52", [:mix], [{:ecto, "~> 2.0.0-rc.3", [hex: :ecto, optional: false]}, {:arc, "~> 0.2", [hex: :arc, optional: false]}]},
+  "base64url": {:hex, :base64url, "0.0.1", "36a90125f5948e3afd7be97662a1504b934dd5dac78451ca6e9abf85a10286be", [:rebar], []},
   "bunt": {:hex, :bunt, "0.1.6", "5d95a6882f73f3b9969fdfd1953798046664e6f77ec4e486e6fafc7caad97c6f", [:mix], []},
   "connection": {:hex, :connection, "1.0.3", "3145f7416be3df248a4935f24e3221dc467c1e3a158d62015b35bd54da365786", [:mix], []},
   "cowboy": {:hex, :cowboy, "1.0.4", "a324a8df9f2316c833a470d918aaf73ae894278b8aa6226ce7a9bf699388f878", [:rebar, :make], [{:cowlib, "~> 1.0.0", [hex: :cowlib, optional: false]}, {:ranch, "~> 1.0", [hex: :ranch, optional: false]}]},

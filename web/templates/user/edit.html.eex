@@ -7,7 +7,7 @@
     </div>
   <% end %>
 
-  <%= form_for @changeset, user_path(@conn, :update), fn f -> %>
+  <%= form_for @changeset, user_path(@conn, :update), [multipart: true], fn f -> %>
     <%= input_group f, :available do %>
       <%= checkbox f, :available %>
       <%= label f, :available %>
@@ -18,6 +18,12 @@
       <%= label f, :bio %>
       <%= textarea f, :bio %>
       <%= error_tag f, :bio %>
+    <% end %>
+
+    <%= input_group f, :avatar do %>
+      <%= label f, :avatar %>
+      <%= file_input f, :avatar %>
+      <%= error_tag f, :avatar %>
     <% end %>
 
     <%= submit "Save changes" %>

@@ -37,3 +37,7 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :alchemic_avatar,
+  colors_palette: :iwanthue,
+  app_name: :academy

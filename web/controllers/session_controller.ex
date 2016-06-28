@@ -1,6 +1,6 @@
 defmodule Academy.SessionController do
   use Academy.Web, :controller
-  alias Academy.User
+  alias Academy.UserController
 
   require Logger
 
@@ -43,7 +43,7 @@ defmodule Academy.SessionController do
   end
 
   defp handle_login(conn, username) do
-    user = User.get_or_create(username)
+    user = UserController.get_or_create(username)
     conn
     |> Guardian.Plug.sign_in(user)
     |> put_flash(:info, "You are now logged in as #{String.capitalize user.name}")

@@ -1,8 +1,14 @@
 defmodule Academy.UserController do
   use Academy.Web, :controller
+
   alias Academy.Repo
+
   alias Academy.User
+  alias Academy.Avatar
+
   alias Academy.SessionController
+
+  require Logger
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when not action in [:show, :index]
 
@@ -52,6 +58,21 @@ defmodule Academy.UserController do
 
   def delete(conn) do
 
+  end
+
+  def get_or_create(username) do
+    case Repo.get_by(User, name: username) do
+      nil -> create(username)
+      user -> user
+    end
+  end
+
+  defp create(username) do
+    Logger.info("Creating user #{username} in database")
+    user = Repo.insert! User.changeset(%User{name: username}, %{})
+    generated_avatar = AlchemicAvatar.generate(String.capitalize(user.name), 100)
+    Avatar.store {generated_avatar, user}
+    user
   end
 
   def unauthenticated(conn, _params) do
