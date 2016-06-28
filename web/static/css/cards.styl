@@ -26,9 +26,12 @@ section.member-card header > h1
 	padding-bottom: .3em
 
 section.member-card header > .availability,
-section.member-card header > .edit-button
+section.member-card header > .edit-buttons
 	position: absolute
 	top: 0
+
+section.member-card header > .availability,
+section.member-card header > .edit-buttons > *
 	padding: .5em
 	width: 1.5em
 	height: 1.5em
@@ -36,8 +39,12 @@ section.member-card header > .edit-button
 section.member-card header > .availability
 	right: 0
 
-section.member-card header > .edit-button
+section.member-card header > .edit-buttons
 	right: 2.5em
+
+section.member-card header > .edit-buttons > *
+	display: inline-block
+	position: relative
 
 section.member-card .skills
 	padding-top: 1em

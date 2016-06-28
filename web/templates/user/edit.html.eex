@@ -1,4 +1,4 @@
-<section class="user-edit">
+<section class="user-edit form">
   <h1>My account</h1>
 
   <%= if @changeset.action do %>

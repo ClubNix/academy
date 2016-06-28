@@ -2,6 +2,7 @@
   <h1>Available skills</h1>
 
   <div class="skills-edit">
+    <%= button "Create a new skill", to: skill_path(@conn, :new), method: :get %>
     <%= for {category, skills} <-
           Enum.group_by(@skills, fn skill -> skill.category.name end) do %>
       <div class="skill-category">

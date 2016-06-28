@@ -61,15 +61,21 @@ defmodule Academy.UserView do
     {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Availability unknown\">?</div>"}
   end
 
-  def edit_button(conn, username) do
+  def edit_buttons(conn, username) do
     user = SessionController.current_user(conn)
     if user do
       case user.name do
         ^username ->
-          link "✎",
-            class: "edit-button tooltip",
-            data: [tooltip: "Edit profile"],
-            to: user_path(conn, :edit)
+          content_tag :div, [class: "edit-buttons"] do
+            [link("✎",
+              class: "edit-button tooltip",
+              data: [tooltip: "Edit profile"],
+              to: user_path(conn, :edit)),
+            link("★",
+              class: "edit-button tooltip",
+              data: [tooltip: "Edit skills"],
+              to: skill_level_path(conn, :edit))]
+          end
         _ -> nil
       end
     end
