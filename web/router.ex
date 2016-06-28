@@ -31,14 +31,19 @@ defmodule Academy.Router do
 
     resources "/users", UserController, only: [:index, :show]
 
-    get      "/account", UserController, :show_self
+    get      "/account",      UserController, :show_self
     get      "/account/edit", UserController, :edit
     patch    "/account/edit", UserController, :update
     put      "/account/edit", UserController, :update
     delete   "/account/edit", UserController, :delete
 
-    get "/account/skills/edit", SkillLevelController, :edit
-    post "/account/skills", SkillLevelController, :update
+    get  "/account/skills/edit", SkillLevelController, :edit
+    post "/account/skills",      SkillLevelController, :update
+
+    resources "/skills",          SkillController, except: [:show, :update, :create]
+    post      "/skills/new",      SkillController, :create
+    patch     "/skills/:id/edit", SkillController, :update
+    put       "/skills/:id/edit", SkillController, :update
   end
 
   # Other scopes may use custom stacks.

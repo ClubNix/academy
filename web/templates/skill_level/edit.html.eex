@@ -1,4 +1,4 @@
-<section class="user-edit">
+<section class="user-edit form">
   <h1>My Skills</h1>
 
   <%= form_for @conn, skill_level_path(@conn, :update), [as: :skill_levels], fn f -> %>

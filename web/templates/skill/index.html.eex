@@ -1,0 +1,36 @@
+<section>
+  <h1>Available skills</h1>
+
+  <div class="skills-edit">
+    <%= for {category, skills} <-
+          Enum.group_by(@skills, fn skill -> skill.category.name end) do %>
+      <div class="skill-category">
+        <h2 class="category_name"><%= category %></h2>
+        <table class="skills">
+          <%= for skill <- skills do %>
+            <tr>
+              <td class="name"><%= skill.name %></td>
+              <td class="description"><%= skill.description %></td>
+              <td class="edit-button">
+                <%= link "✎",
+                      to: skill_path(@conn, :edit, skill.id),
+                      class: "tooltip",
+                      data: [tooltip: "Edit skill"]
+                %>
+              </td>
+              <td class="delete-button">
+                <%= link "✗",
+                      to: skill_path(@conn, :delete, skill.id), method: :delete,
+                      class: "tooltip",
+                      data: [tooltip: "Delete skill",
+                       confirm: "Are you sure you want to delete the #{skill.name} skill?"]
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div>
+
+</section>

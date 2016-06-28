@@ -73,5 +73,4 @@ defmodule Academy.SkillLevelController do
     |> render(Academy.ErrorView, :"401")
   end
 
-
 end

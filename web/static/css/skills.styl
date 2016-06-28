@@ -1,0 +1,43 @@
+// Browser vendor prefixes library
+@import 'nib'
+
+@import '_config'
+
+.skills-edit
+	display: flex
+	flex-wrap: wrap
+	justify-content: center
+
+.skills-edit > h1
+	flex: 1
+
+.skill-category
+	max-width: 45em
+	min-width: 25em
+	margin: 2em
+
+.skill-category > .skills
+	shadow-elevation-2dp()
+	round-corners()
+	margin: 0 auto
+
+.skill-category > .skills tr
+	transition: background-color transition-timing transition-function
+
+.skill-category > .skills tr:nth-child(2n)
+	background-color: rgb(244, 244, 244)
+
+.skill-category > .skills tr:hover
+	background-color: rgb(237, 237, 237)
+
+.skill-category > .skills td
+	padding: .7em 1em
+	border-bottom: 1px solid rgba(0, 0, 0, 0.26)
+
+.skill-category > .skills .edit-button,
+.skill-category > .skills .delete-button
+	padding: .7em
+
+.edit-button .tooltip,
+.delete-button .tooltip
+	position: relative

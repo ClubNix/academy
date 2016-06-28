@@ -25,7 +25,7 @@ defmodule Academy.UserView do
       |> Enum.map(fn chunk ->
         chunk
         |> Enum.sort(&(&1.level > &2.level))
-        |> Enum.take 5
+        |> Enum.take(5)
       end)
       |> Enum.map(&rating_table/1)
     else

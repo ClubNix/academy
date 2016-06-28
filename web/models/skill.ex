@@ -5,7 +5,7 @@ defmodule Academy.Skill do
     field :name, :string
     field :description, :string
 
-    belongs_to :category, Academy.SkillCategory
+    belongs_to :category, Academy.SkillCategory, on_replace: :nilify
 
     timestamps
   end
@@ -22,5 +22,8 @@ defmodule Academy.Skill do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_assoc(:category)
+    |> validate_length(:name, min: 1)
+    |> validate_length(:description, min: 10, max: 50)
   end
 end

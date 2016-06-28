@@ -1,0 +1,8 @@
+<section class="skill-edit form">
+  <h1>Skill edit: <%= @skill.name %></h1>
+
+  <%= render "form.html", changeset: @changeset, 
+                          categories: @categories,
+                          action: skill_path(@conn, :update, @skill.id),
+                          submit_text: "Change skill" %>
+</section>
