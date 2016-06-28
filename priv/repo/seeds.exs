@@ -52,6 +52,12 @@ Repo.insert! %Skill{
   }
 
 Repo.insert! %Skill{
+    name: "Javascript",
+    description: "A scripting language, usually used in the browser",
+    category_id: programming_category.id
+  }
+
+Repo.insert! %Skill{
     name: "Elixir",
     description: "A functional, concurrent language",
     category_id: programming_category.id
