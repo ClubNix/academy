@@ -1,4 +1,8 @@
 defmodule Academy do
+  @moduledoc ~S"""
+  The main application: where everything starts.
+  """
+
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html

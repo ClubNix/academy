@@ -1,4 +1,16 @@
 defmodule Academy.Skill do
+  @moduledoc ~S"""
+  Defines a skill model.
+
+  Composition
+  -----------
+
+  A skill is composed of a name, a description and an association with
+  `Academy.SkillCategory`
+
+  For getting the associations, see `Academy.User`.
+  """
+
   use Academy.Web, :model
 
   schema "skills" do
@@ -16,8 +28,7 @@ defmodule Academy.Skill do
   @doc """
   Creates a changeset based on the `model` and `params`.
 
-  If no params are provided, an invalid changeset is returned
-  with no validation performed.
+  For examples of how this works, see `Academy.User.changeset/2`.
   """
   def changeset(model, params \\ %{}) do
     model

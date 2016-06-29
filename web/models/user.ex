@@ -1,12 +1,42 @@
 defmodule Academy.User do
+  @moduledoc ~S"""
+  Defines a user model.
+
+  Composition
+  -----------
+
+  A user is composed of a name, a biography, his availability and his avatar
+  (handled by the `Academy.Avatar` module).
+
+  A user also has a number of skill levels, which are defined in the
+  `Academy.SkillLevel` module.
+
+  You can also get his bare skills (without their levels) and his skill
+  categories (without the skills)
+
+  Getting the associations
+  ------------------------
+
+  In order to get his skill levels, skills or skill categories, one must use the
+  `Academy.Repo.Preload/1` function like so:
+
+      alias Academy.Repo
+      alias Academy.User
+
+      # Will get the user and his skill levels (but not his skills, so you
+      # won't have their name)
+      Repo.get(User, id) |> Repo.preload(:skill_levels)
+
+      # Will get the user and his skill levels and skills
+      Repo.get(User, id) |> Repo.preload(:skills)
+
+      # Will get the user and his skill levels, skills and skill categories
+      Repo.get(User, id) |> Repo.preload(:skill_categories)
+  """
+
   use Academy.Web, :model
 
   use Arc.Ecto.Schema
-
-  require Logger
-
-  alias Academy.User
-  alias Academy.Repo
 
   schema "users" do
     field :name, :string
@@ -24,11 +54,22 @@ defmodule Academy.User do
   @required_fields ~w(name)
   @optional_fields ~w(bio available)
 
-  @doc """
+  @doc ~S"""
   Creates a changeset based on the `model` and `params`.
 
-  If no params are provided, an invalid changeset is returned
-  with no validation performed.
+  Examples:
+
+      alias Academy.User
+      alias Academy.Repo
+
+      # Create a new user with name "guest" and insert it in the database
+      User.changeset(%User{}, name: "guest")
+      |> Repo.insert!
+
+      # Rename a user
+      Repo.get_by(User, name: "guest")
+      |> User.changeset(name: "guest1")
+      |> Repo.update!
   """
   def changeset(model, params \\ %{}) do
     model
@@ -38,6 +79,11 @@ defmodule Academy.User do
     #|> validate_avatar(params)
   end
 
+  @doc ~S"""
+  Validate an avatar
+
+  Currently not working.
+  """
   def validate_avatar(changeset, params) do
     IO.inspect params
     changeset

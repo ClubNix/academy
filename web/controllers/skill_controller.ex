@@ -1,4 +1,8 @@
 defmodule Academy.SkillController do
+  @moduledoc ~S"""
+  The skill controller
+  """
+
   use Academy.Web, :controller
 
   alias Academy.Repo
@@ -32,7 +36,7 @@ defmodule Academy.SkillController do
                 |> Ecto.Changeset.put_assoc(:category, category_changeset)
 
     case Repo.update(changeset) do
-      {:ok, skill} ->
+      {:ok, _skill} ->
         conn
         |> put_flash(:info, "Skill updated successfully.")
         |> redirect(to: skill_path(conn, :index))
@@ -61,7 +65,7 @@ defmodule Academy.SkillController do
                 |> Ecto.Changeset.put_assoc(:category, category_changeset)
 
     case Repo.insert(changeset) do
-      {:ok, skill} ->
+      {:ok, _skill} ->
         conn
         |> put_flash(:info, "Skill successfully created")
         |> redirect(to: skill_path(conn, :index))
@@ -82,6 +86,10 @@ defmodule Academy.SkillController do
     |> redirect(to: skill_path(conn, :index))
   end
 
+  @doc ~S"""
+  Function called if the user is not authenticated and tried to view a page
+  requiring authentication
+  """
   def unauthenticated(conn, _params) do
     conn
     |> put_status(401)

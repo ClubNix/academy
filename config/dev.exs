@@ -45,17 +45,4 @@ config :academy, Academy.Repo,
 config :guardian, Guardian,
   secret_key: %{"k" => "o8miWfgDbuWnyEEefDxIGQ", "kty" => "oct"}
 
-# ===================================
-# == Example dev.secret.exs config ==
-# ===================================
-
-#use Mix.Config
-#
-#config :academy, Academy.Endpoint.LDAP,
-#  host: "ldap.my-organisation.org",
-#  base: "dc=myorganisation,dc=org",
-#  where: "People",
-#  ssl: true,
-#  port: 636
-
 import_config "dev.secret.exs"

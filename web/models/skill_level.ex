@@ -1,4 +1,16 @@
 defmodule Academy.SkillLevel do
+  @moduledoc ~S"""
+  Defines a skill level model
+
+  Composition
+  -----------
+
+  A skill category is composed of a level, and an association with a
+  `Academy.User` and a `Academy.Skill`.
+
+  For getting the associations, see `Academy.User`.
+  """
+
   use Academy.Web, :model
 
   schema "skill_levels" do
@@ -14,8 +26,7 @@ defmodule Academy.SkillLevel do
   @doc """
   Creates a changeset based on the `model` and `params`.
 
-  If no params are provided, an invalid changeset is returned
-  with no validation performed.
+  For examples of how this works, see `Academy.User.changeset/2`.
   """
   def changeset(model, params \\ %{}) do
     model

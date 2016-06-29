@@ -1,4 +1,8 @@
 defmodule Academy.UserView do
+  @moduledoc ~S"""
+  Module used to render user related pages.
+  """
+
   use Academy.Web, :view
 
   alias Academy.SessionController
@@ -6,11 +10,14 @@ defmodule Academy.UserView do
 
   use Phoenix.HTML
 
+  @doc ~S"""
+  Rank the given list of users according to the sum of their skill levels.
+  """
   def rank_users(users) do
     users
     |> Enum.group_by(&sum_skill_levels/1)
     |> Enum.sort(fn {lrank, _lusers}, {rrank, _rusers} -> lrank > rrank end)
-    |> Enum.flat_map(fn {rank, users} -> users end)
+    |> Enum.flat_map(fn {_rank, users} -> users end)
   end
 
   defp sum_skill_levels(user) do
@@ -19,6 +26,9 @@ defmodule Academy.UserView do
     |> Enum.sum
   end
 
+  @doc ~S"""
+  Generate the HTML of the inside of the full member card
+  """
   def full_ratings(skill_levels) do
     skill_levels
     |> Enum.group_by(fn skill_level -> skill_level.skill.category.name end)
@@ -30,6 +40,9 @@ defmodule Academy.UserView do
     end)
   end
 
+  @doc ~S"""
+  Generate the HTML of the inside of the small member card
+  """
   def small_ratings(skill_levels) do
     skill_length = length(skill_levels)
     if skill_length > 4 do
@@ -47,6 +60,11 @@ defmodule Academy.UserView do
     end
   end
 
+  @doc ~S"""
+  Generate the HTML of a rating table
+
+  Just the table of the association skill name / rating
+  """
   def rating_table(skill_levels) do
     content_tag :table do
       Enum.map(skill_levels, fn skill_level ->
@@ -59,14 +77,25 @@ defmodule Academy.UserView do
     end
   end
 
+  @doc ~S"""
+  Generate the stars for the given rating
+  """
   def rating(level, max \\ 5, full_str \\ "★", empty_str \\ "☆") do
     String.duplicate(full_str, level) <> String.duplicate(empty_str, max - level)
   end
 
+  @doc ~S"""
+  Generate the HTML for the avatar picture of the current member.
+
+  See `Academy.Avatar`
+  """
   def avatar(user) do
     {:safe, "<img src=\"#{avatar_url user}\" alt=\"Profile picture\" class=\"profile-picture\">"}
   end
 
+  @doc ~S"""
+  Get the URI of the given user's avatar.
+  """
   def avatar_url(user) do
     # Drop the priv/static part
     split_path = Avatar.url({user.avatar, user})
@@ -76,6 +105,9 @@ defmodule Academy.UserView do
     Path.join ["/" | split_path]
   end
 
+  @doc ~S"""
+  Generate the HTML of the availability icon for a member card
+  """
   def availability_icon(true) do
     {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Available\"><img src=\"/images/available.svg\" alt=\"Available\"></div>"}
   end
@@ -88,6 +120,11 @@ defmodule Academy.UserView do
     {:safe, "<div class=\"availability tooltip\" data-tooltip=\"Availability unknown\">?</div>"}
   end
 
+  @doc ~S"""
+  Generate the HTML for the full card's edit buttons
+
+  This will return `nil` if the given username is not the current user's name.
+  """
   def edit_buttons(conn, username) do
     user = SessionController.current_user(conn)
     if user do

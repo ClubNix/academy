@@ -1,8 +1,10 @@
 defmodule Academy.SkillLevelController do
+  @moduledoc ~S"""
+  The skill level controller
+  """
   use Academy.Web, :controller
 
   alias Academy.Repo
-  alias Academy.User
   alias Academy.Skill
   alias Academy.SkillLevel
   alias Academy.SkillCategory
@@ -43,6 +45,9 @@ defmodule Academy.SkillLevelController do
     |> redirect(to: user_path(conn, :show, user.name))
   end
 
+  @doc ~S"""
+  Find the skill level of the skill of a given user using the skill's id
+  """
   def find_skill_level(user, skill_id) do
     Enum.find(user.skill_levels, fn user_skill_level ->
       user_skill_level.skill.id == skill_id
@@ -67,6 +72,10 @@ defmodule Academy.SkillLevelController do
       end
   end
 
+  @doc ~S"""
+  Function called if the user is not authenticated and tried to view a page
+  requiring authentication
+  """
   def unauthenticated(conn, _params) do
     conn
     |> put_status(401)

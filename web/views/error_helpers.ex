@@ -14,12 +14,6 @@ defmodule Academy.ErrorHelpers do
     end
   end
 
-  def input_group(form, field, fun) do
-    classes = "input"
-    classes = classes <> if form.errors[field], do: " invalid", else: ""
-    content_tag :div, [class: classes], fun
-  end
-
   @doc """
   Translates an error message using gettext.
   """

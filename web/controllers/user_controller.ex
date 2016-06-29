@@ -1,4 +1,8 @@
 defmodule Academy.UserController do
+  @moduledoc ~S"""
+  Controller for user related routes
+  """
+
   use Academy.Web, :controller
 
   alias Academy.Repo
@@ -12,6 +16,9 @@ defmodule Academy.UserController do
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when not action in [:show, :index]
 
+  @doc ~S"""
+  Show all users (front page)
+  """
   def index(conn, _params) do
     render conn, "all.html", users: User |> Repo.all |> Repo.preload(:skills)
   end
@@ -30,6 +37,11 @@ defmodule Academy.UserController do
     end
   end
 
+  @doc ~S"""
+  Show the full card of the current user.
+
+  This is actually a redirection to show with the good `id`
+  """
   def show_self(conn, _params) do
     user = SessionController.current_user(conn)
     redirect(conn, to: user_path(conn, :show, user.name))
@@ -60,6 +72,9 @@ defmodule Academy.UserController do
 
   end
 
+  @doc ~S"""
+  Get a user by name, creating it if he does not exists
+  """
   def get_or_create(username) do
     case Repo.get_by(User, name: username) do
       nil -> create(username)
@@ -75,6 +90,10 @@ defmodule Academy.UserController do
     user
   end
 
+  @doc ~S"""
+  Function called if the user is not authenticated and tried to view a page
+  requiring authentication
+  """
   def unauthenticated(conn, _params) do
     conn
     |> put_status(401)

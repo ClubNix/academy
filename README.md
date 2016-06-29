@@ -10,6 +10,5 @@ A member skill database
 - Setup the database
 	- Start the PostgreSQL service
 	- Check the credentials in the config files (`/config` directory)
-	- Run `mix ecto.setup` to create the database and tables
-	- Run `mix run priv/repo/seeds.exs` to populate the skill tables
+	- Run `mix ecto.setup` to create the database and tables and populate the skill related tables
 - run `mix phoenix.server`

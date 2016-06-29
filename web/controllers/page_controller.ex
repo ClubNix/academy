@@ -1,9 +1,11 @@
 defmodule Academy.PageController do
-  use Academy.Web, :controller
+  @moduledoc ~S"""
+  The page controller.
 
-  def index(conn, _params) do
-    render conn, "index.html"
-  end
+  Currently only used to generate the about page.
+  """
+
+  use Academy.Web, :controller
 
   def about(conn, _params) do
     render conn, "about.html"
