@@ -6,6 +6,19 @@ defmodule Academy.UserView do
 
   use Phoenix.HTML
 
+  def rank_users(users) do
+    users
+    |> Enum.group_by(&sum_skill_levels/1)
+    |> Enum.sort(fn {lrank, _lusers}, {rrank, _rusers} -> lrank > rrank end)
+    |> Enum.flat_map(fn {rank, users} -> users end)
+  end
+
+  defp sum_skill_levels(user) do
+    user.skill_levels
+    |> Enum.map(fn skill_level -> skill_level.level end)
+    |> Enum.sum
+  end
+
   def full_ratings(skill_levels) do
     skill_levels
     |> Enum.group_by(fn skill_level -> skill_level.skill.category.name end)

@@ -1,6 +1,6 @@
 <div class="member-card-grid">
 
-  <%= for user <- @users do %>
+  <%= for user <- rank_users(@users) do %>
     <%= render "small-card.html", conn: @conn, user: user %>
   <%= end %>
 
