@@ -1,0 +1,11 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+  <%= input_group f, :name do %>
+    <%= text_input f, :name, required: "" %>
+    <%= label f, :name, class: "text-input" %>
+    <%= error_tag f, :name %>
+  <% end %>
+
+  <%= submit @submit_text %>
+
+<% end %>

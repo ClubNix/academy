@@ -14,7 +14,7 @@
 
   <%= input_group f, :category_id do %>
     <%= label f, :category_id %>
-    <%= select f, :category_id, @categories, required: "" %>
+    <%= select f, :category_id, [{"No category", ""} | @categories] %>
     <%= error_tag f, :category_id %>
   <% end %>
 

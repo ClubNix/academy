@@ -28,12 +28,8 @@ defmodule Academy.SkillController do
     skill = Skill
             |> Repo.get!(skill_id)
             |> Repo.preload(:category)
-    category_changeset = SkillCategory
-                          |> Repo.get!(skill_params["category_id"])
-                          |> SkillCategory.changeset
-    changeset = skill
-                |> Skill.changeset(skill_params)
-                |> Ecto.Changeset.put_assoc(:category, category_changeset)
+
+    changeset = build_skill_changeset(skill, skill_params)
 
     case Repo.update(changeset) do
       {:ok, _skill} ->
@@ -57,13 +53,7 @@ defmodule Academy.SkillController do
   end
 
   def create(conn, %{"skill" => skill_params}) do
-    category_changeset = SkillCategory
-                          |> Repo.get!(skill_params["category_id"])
-                          |> SkillCategory.changeset
-    changeset = %Skill{}
-                |> Skill.changeset(skill_params)
-                |> Ecto.Changeset.put_assoc(:category, category_changeset)
-
+    changeset = build_skill_changeset(%Skill{}, skill_params)
     case Repo.insert(changeset) do
       {:ok, _skill} ->
         conn
@@ -77,9 +67,25 @@ defmodule Academy.SkillController do
     end
   end
 
+  defp build_skill_changeset(skill, skill_params) do
+    changeset = skill
+                |> Skill.changeset(skill_params)
+
+    case skill_params["category_id"] do
+      "" -> Ecto.Changeset.put_assoc(changeset, :category, nil)
+      _  ->
+        category_changeset = SkillCategory
+                              |> Repo.get!(skill_params["category_id"])
+                              |> SkillCategory.changeset
+        Ecto.Changeset.put_assoc(changeset, :category, category_changeset)
+    end
+
+  end
+
   def delete(conn, %{"id" => skill_id}) do
-    skill = Repo.get!(Skill, skill_id)
-    Repo.delete!(skill)
+    Skill
+    |> Repo.get!(skill_id)
+    |> Repo.delete!
 
     conn
     |> put_flash(:info, "Skill successfully deleted")

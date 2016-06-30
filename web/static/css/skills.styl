@@ -3,21 +3,37 @@
 
 @import '_config'
 
-.skills-edit
+.skills-dashboard
 	display: flex
 	flex-wrap: wrap
 	justify-content: center
 
-.skills-edit > h1
+.skills-dashboard > h1
 	flex: 1
 
-.skills-edit > form
+.skills-edit > .buttons
 	width: 100%
+	text-align: center
+
+.skills-edit > .buttons > *
+	display: inline-block
 
 .skill-category
 	max-width: 45em
 	min-width: 25em
 	margin: 2em
+
+.skill-category > header
+	position: relative
+
+.skill-category > header > .edit-buttons
+	position: absolute
+	top: .5em
+	right: 0
+
+.skill-category > header > .edit-buttons > *
+	display: inline-block
+	padding: .5em
 
 .skill-category > .skills
 	shadow-elevation-2dp()

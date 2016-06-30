@@ -1,0 +1,11 @@
+<section class="skill-category-edit form">
+  <%
+    {:data, name} = Ecto.Changeset.fetch_field(@changeset, :name)
+    {:data, id}   = Ecto.Changeset.fetch_field(@changeset, :id)
+  %>
+  <h1>Skill edit: <%= name %></h1>
+
+  <%= render "form.html", changeset: @changeset,
+                          action: skill_category_path(@conn, :update, id),
+                          submit_text: "Change skill category" %>
+</section>

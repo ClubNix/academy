@@ -1,0 +1,22 @@
+<%
+name = case @category do
+  nil -> "No category"
+  _   -> @category.name
+end
+%>
+<header>
+  <h2 class="category-name"><%= name %></h2>
+  <%= if @category do %>
+    <div class="edit-buttons">
+      <%= link "✎", to: skill_category_path(@conn, :edit, @category.id),
+                    class: "tooltip",
+                    data: [tooltip: "Edit category"] %>
+      <%= link "✗", to: skill_category_path(@conn, :delete, @category.id),
+                    method: :delete,
+                    class: "tooltip",
+                    data: [
+                      tooltip: "Delete category",
+                      confirm: "Are you sure you want to delete the #{@category.name} category?"] %>
+    </div>
+  <% end %>
+</header>

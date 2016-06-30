@@ -1,0 +1,7 @@
+<section class="new-skill-category form">
+  <h1>New skill category</h1>
+
+  <%= render "form.html", changeset: @changeset,
+                          action: skill_category_path(@conn, :create),
+                          submit_text: "Create skill category" %>
+</section>

@@ -1,12 +1,16 @@
-<section>
+<section class="skills-edit">
   <h1>Available skills</h1>
 
-  <div class="skills-edit">
+  <div class="buttons">
     <%= button "Create a new skill", to: skill_path(@conn, :new), method: :get %>
+    <%= button "Create a new category", to: skill_category_path(@conn, :new), method: :get %>
+  </div>
+
+  <div class="skills-dashboard">
     <%= for {category, skills} <-
-          Enum.group_by(@skills, fn skill -> skill.category.name end) do %>
+          Enum.group_by(@skills, fn skill -> skill.category end) do %>
       <div class="skill-category">
-        <h2 class="category_name"><%= category %></h2>
+        <%= render "category_header.html", conn: @conn, category: category %>
         <table class="skills">
           <%= for skill <- skills do %>
             <tr>

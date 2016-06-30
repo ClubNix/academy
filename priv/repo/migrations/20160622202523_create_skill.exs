@@ -6,7 +6,7 @@ defmodule Academy.Repo.Migrations.CreateSkill do
       add :name, :string
       add :description, :string
 
-      add :category_id, references(:skill_categories)
+      add :category_id, references(:skill_categories, on_delete: :nilify_all)
 
       timestamps
     end

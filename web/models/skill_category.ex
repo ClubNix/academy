@@ -27,6 +27,7 @@ defmodule Academy.SkillCategory do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_required(:name)
     |> unique_constraint(:name)
   end
 end

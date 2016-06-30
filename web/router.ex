@@ -44,6 +44,11 @@ defmodule Academy.Router do
     post      "/skills/new",      SkillController, :create
     patch     "/skills/:id/edit", SkillController, :update
     put       "/skills/:id/edit", SkillController, :update
+
+    resources "/skill_categories",          SkillCategoryController, only: [:edit, :new, :delete]
+    post      "/skill_categories/new",      SkillCategoryController, :create
+    patch     "/skill_categories/:id/edit", SkillCategoryController, :update
+    put       "/skill_categories/:id/edit", SkillCategoryController, :update
   end
 
   # Other scopes may use custom stacks.

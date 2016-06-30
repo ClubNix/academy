@@ -18,11 +18,9 @@ defmodule Academy.SkillLevelController do
     user = SessionController.current_user(conn)
 
     skill_categories =
-      Repo.all(SkillCategory)
-      |> Enum.map(fn category ->
-          [category: category,
-           skills: Skill |> where([], category_id: ^category.id) |> Repo.all]
-        end)
+      Repo.all(Skill)
+      |> Repo.preload(:category)
+      |> Enum.group_by(fn skill -> skill.category end)
 
     render conn, "edit.html",
       user: user |> Repo.preload([:skills]),

@@ -34,7 +34,7 @@ defmodule Academy.Skill do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> cast_assoc(:category)
-    |> validate_length(:name, min: 1)
+    |> validate_required(:name)
     |> validate_length(:description, min: 10, max: 50)
   end
 end
