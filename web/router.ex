@@ -51,8 +51,13 @@ defmodule Academy.Router do
     put       "/skill_categories/:id/edit", SkillCategoryController, :update
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Academy do
-  #   pipe_through :api
-  # end
+  scope "/api", Academy do
+    pipe_through :api
+
+    resources "/users", API.UserController, only: [:index, :show]
+
+    resources "/skills", API.SkillController, only: [:index, :show]
+
+    resources "/skill_categories", API.SkillCategoryController, only: [:index, :show]
+  end
 end
