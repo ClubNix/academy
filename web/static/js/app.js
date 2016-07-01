@@ -19,3 +19,12 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+export var App = {
+	run: function() {
+		if(document.getElementById("search-bar")) {
+			console.log("search bar detected, running watcher");
+			require("./front-search").SearchWatcher.watch();
+		}
+	}
+}

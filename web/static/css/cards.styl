@@ -54,6 +54,9 @@ section.member-card .skills
 	justify-content: center
 	display: flex
 
+section.member-card .skills.dimmed
+	color: rgba(0, 0, 0, 0.3)
+
 section.member-card .skills table
 	display: flex
 	flex: 1
@@ -65,11 +68,22 @@ section.member-card .skills table > tbody
 
 section.member-card .skills table > tbody > tr
 	width: 100%
+	transition: color transition-timing transition-function
+
+section.member-card .skills table > tbody > tr.highlight
+	color: highlight-bg-color
 
 section.member-card .skills table > tbody > tr > td.rating
+	transition: color transition-timing transition-function
 	font-family: sans
 	color: accent-bg-color
 	padding-left: 1em
+
+section.member-card .skills.dimmed table > tbody > tr > td.rating
+	color: rgba(255, 171, 64, 0.3)
+
+section.member-card .skills.dimmed table > tbody > tr.highlight > td.rating
+	color: accent-bg-color
 
 section.member-card .skills table > tbody > tr > td.skill-name
 	position: relative

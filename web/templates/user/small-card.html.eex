@@ -1,4 +1,4 @@
-<section class="member-card">
+<section class="member-card" id="member-<%= @user.id %>">
   <%= link to: user_path(@conn, :show, @user.name) do %>
     <header>
       <%= avatar @user %>
