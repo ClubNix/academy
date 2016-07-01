@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,500,700,900,100italic,300italic,400,400italic,500italic,700italic,900italic);</style>
-  </defs>
-  <ellipse style="fill: rgb(0, 230, 118);" cx="250" cy="250" rx="249.228" ry="249.228"/>
-  <text x="82.252" y="396.979" style="font-size: 428px; font-family: Roboto; word-spacing: 0px; fill: rgb(255, 255, 255);">✓</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><ellipse ry="249.228" rx="249.228" cy="250" cx="250" fill="#00e676"/><path d="M176.922 260.303q8.15 0 12.33 13.375 8.36 25.078 11.912 25.078 2.717 0 5.643-4.18 58.724-94.042 108.672-152.14 12.957-15.047 41.17-15.047 6.687 0 8.986 1.254 2.299 1.254 2.299 3.135 0 2.926-6.897 11.494-80.668 96.969-149.633 204.805-4.806 7.523-19.644 7.523-15.047 0-17.764-1.254-7.105-3.135-16.719-31.974-10.867-31.975-10.867-40.125 0-8.778 14.63-16.928 8.985-5.016 15.882-5.016z" font-size="428" font-family="Roboto" word-spacing="0" fill="#fff"/></svg>
