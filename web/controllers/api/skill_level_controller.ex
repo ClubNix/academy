@@ -12,5 +12,5 @@ defmodule Academy.API.SkillLevelController do
   def show(conn, %{"id" => id}) do
     render conn, skill_level: SkillLevel |> Repo.get(id) |> Repo.preload(skill: :category)
   end
-  
+
 end

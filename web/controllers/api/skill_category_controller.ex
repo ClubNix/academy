@@ -8,7 +8,7 @@ defmodule Academy.API.SkillCategoryController do
   alias Academy.Repo
 
   alias Academy.SkillCategory
-  
+
   def index(conn, _params) do
     render conn, skill_categories: Repo.all(SkillCategory)
   end
@@ -16,5 +16,5 @@ defmodule Academy.API.SkillCategoryController do
   def show(conn, %{"id" => id}) do
     render conn, skill_category: Repo.get(SkillCategory, id)
   end
-  
+
 end

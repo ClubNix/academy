@@ -5,7 +5,7 @@ defmodule Academy.API.SkillView do
   def render("index.json", %{skills: skills}) do
     render_many(skills, Academy.API.SkillView, "show.json")
   end
-  
+
   def render("show.json", %{skill: skill}) do
     %{
       id: skill.id,
