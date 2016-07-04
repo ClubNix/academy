@@ -6,6 +6,7 @@
       <%= availability_icon(@user.available) %>
     </header>
     <div class="skills">
+      <table class="addendum"></table>
       <%= small_ratings @user.skill_levels %>
     </div>
   <% end %>

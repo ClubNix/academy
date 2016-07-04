@@ -6,18 +6,23 @@ class MemberCard {
 		if(!this.htmlCard) {
 			console.warn("Non-existent user bound: id = " + id);
 		}
+		this.addendum = this.htmlCard.querySelector(".addendum");
+		this.skillLevels = window.users[id - 1].skill_levels;
 	}
 
 	highlightSkill(skillName) {
 		let htmlCard = this.htmlCard;
+		let self = this;
 		return new Promise(function(resolve, reject) {
 			for(let skillNameEl of htmlCard.querySelectorAll(".skill-name")) {
 				if(skillNameEl.innerHTML == skillName) {
 					skillNameEl.parentNode.classList.add("highlight");
 					resolve();
+					return;
 				}
 			}
-			reject("No such skill: " + skillName);
+			self.appendAddendum(skillName);
+			resolve();
 		});
 	}
 
@@ -39,8 +44,55 @@ class MemberCard {
 		this.htmlCard.querySelector(".skills").classList.remove("dimmed");
 	}
 
+	findSkillLevel(skillName) {
+		for(let skillLevel of this.skillLevels) {
+			if(skillLevel.skill.name == skillName) {
+				return skillLevel;
+			}
+		}
+		return false;
+	}
+
+	getAddendumTbody() {
+		if(this.addendum.firstChild) {
+			return this.addendum.firstChild;
+		} else {
+			return this.addendum.appendChild(document.createElement("tbody"));
+		}
+	}
+
+	appendAddendum(skillName) {
+		let skillLevel = this.findSkillLevel(skillName);
+
+		let skillNameEl = document.createElement("td");
+		skillNameEl.classList.add("skill-name");
+		skillNameEl.classList.add("tooltip");
+		skillNameEl.setAttribute("data-tooltip", skillLevel.skill.description);
+		skillNameEl.innerHTML = skillName;
+
+		let skillRatingEl = document.createElement("td");
+		skillRatingEl.classList.add("rating");
+		skillRatingEl.innerHTML = rating(skillLevel.level);
+
+		let skillRowEl = document.createElement("tr");
+		skillRowEl.classList.add("highlight");
+		skillRowEl.appendChild(skillNameEl);
+		skillRowEl.appendChild(skillRatingEl);
+
+		this.getAddendumTbody().appendChild(skillRowEl);
+	}
+
+	clearAddendum() {
+		if(this.addendum.firstChild) {
+			this.addendum.removeChild(this.addendum.firstChild);
+		}
+	}
+
 }
 
+function rating(level) {
+	return "★".repeat(level) + "☆".repeat(5 - level);
+}
 
 function fetchUsers() {
 	return new Promise(function(resolve, reject) {
@@ -114,6 +166,12 @@ function undimAllSkills() {
 	}
 }
 
+function clearAllAddenda() {
+	for(let card of window.cards) {
+		card.clearAddendum();
+	}
+}
+
 function empty(string) {
 	return !/\S/.test(string);
 }
@@ -145,10 +203,10 @@ export var Searcher = {
 			console.log("Searching for: " + query);
 			clearAllHighlights();
 			dimAllSkills();
+			clearAllAddenda();
 			let matches = [];
 			for(let skillName in window.skills) {
 				if(skillName.toLowerCase().indexOf(query) != -1) {
-					console.log(skillName + ": " + window.skills[skillName]);
 					for(let userId of window.skills[skillName]) {
 						window.cards[userId - 1].highlightSkill(skillName);
 					}
@@ -163,6 +221,7 @@ export var Searcher = {
 		console.log("Clearing search.");
 		clearAllHighlights();
 		undimAllSkills();
+		clearAllAddenda();
 	}
 }
 

@@ -10,6 +10,7 @@ defmodule Academy.API.SkillView do
     %{
       id: skill.id,
       name: skill.name,
+      description: skill.description,
       category: render_one(skill.category, Academy.API.SkillCategoryView, "show.json")
     }
   end
