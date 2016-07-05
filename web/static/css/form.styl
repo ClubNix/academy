@@ -58,6 +58,15 @@ form input[type="search"]
 	outline: none
 	margin-bottom: 1em
 
+form .invalid input[type="text"],
+form .invalid input[type="tel"],
+form .invalid input[type="email"],
+form .invalid input[type="url"],
+form .invalid input[type="password"],
+form .invalid input[type="number"],
+form .invalid input[type="search"]
+	border-bottom: 3px solid error-color
+
 form input[type="submit"]
 	accent()
 	title-font()
@@ -90,7 +99,7 @@ form .input > .help-block
 	display: block
 	color: error-color
 	font-size: .8em
-	margin: .6em 0
+	margin-bottom: 3em
 	box-sizing: border-box
 	width: 100%
 

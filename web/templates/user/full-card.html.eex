@@ -5,10 +5,32 @@
     <%= availability_icon(@user.available) %>
     <%= edit_buttons @conn, @user.name %>
   </header>
-  <%= if @user.bio do %>
-    <p class="bio">
-      <%= @user.bio %>
-    </p>
+  <%= if @user.email !== nil or @user.github_username !== nil or @user.bio !== nil do %>
+    <div class="user-info">
+      <%= if @user.bio do %>
+        <p class="bio">
+          <%= @user.bio %>
+        </p>
+      <% end %>
+      <ul class="social">
+        <%= if @user.email do %>
+          <li>
+            <a href="mailto:<%= @user.email %>">
+              <img src="/images/mail-symbol.svg" alt="Mail symbol">
+              <%= @user.email %>
+            </a>
+          </li>
+        <% end %>
+        <%= if @user.github_username do %>
+          <li>
+            <a href="https://github.com/<%= @user.github_username %>">
+              <img src="/images/github-mark.svg" alt="GitHub Mark">
+              <%= @user.github_username %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
   <div class="skills">
     <%= full_ratings @user.skill_levels %>

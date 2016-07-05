@@ -26,6 +26,18 @@
       <%= error_tag f, :avatar %>
     <% end %>
 
+    <%= input_group f, :email do %>
+      <%= text_input f, :email %>
+      <%= label f, :email, class: "text-input" %>
+      <%= error_tag f, :email %>
+    <% end %>
+
+    <%= input_group f, :github_username do %>
+      <%= text_input f, :github_username %>
+      <%= label f, :github_username, class: "text-input" %>
+      <%= error_tag f, :github_username %>
+    <% end %>
+
     <%= submit "Save changes" %>
   <% end %>
 </section>

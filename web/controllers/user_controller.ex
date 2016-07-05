@@ -15,6 +15,7 @@ defmodule Academy.UserController do
   require Logger
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when not action in [:show, :index]
+  plug :scrub_params, "user" when action in [:update]
 
   @doc ~S"""
   Show all users (front page)

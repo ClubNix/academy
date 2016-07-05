@@ -43,6 +43,8 @@ defmodule Academy.User do
     field :bio, :string
     field :available, :boolean
     field :avatar, Academy.Avatar.Type
+    field :email, :string
+    field :github_username, :string
 
     has_many :skill_levels, Academy.SkillLevel
     has_many :skills, through: [:skill_levels, :skill]
@@ -52,7 +54,7 @@ defmodule Academy.User do
   end
 
   @required_fields ~w(name)
-  @optional_fields ~w(bio available)
+  @optional_fields ~w(bio available email github_username)
 
   @doc ~S"""
   Creates a changeset based on the `model` and `params`.
@@ -76,7 +78,36 @@ defmodule Academy.User do
     |> cast(params, @required_fields, @optional_fields)
     |> cast_attachments(params, [:avatar])
     |> validate_length(:bio, min: 10, max: 140)
+    |> validate_email(:email)
+    |> validate_github_username(:github_username)
     #|> validate_avatar(params)
+  end
+
+  def validate_email(changeset, field) do
+    email = get_field(changeset, field)
+    if email !== nil do
+      validate_format(changeset,
+       :email, ~r/\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+    else
+      changeset
+    end
+  end
+
+  @doc ~S"""
+  Validate a github username in a changeset.
+  """
+  def validate_github_username(changeset, field) do
+    username = get_field(changeset, field)
+    if username !== nil do
+      if Regex.match?(~r/^[[:alnum:]][[:alnum:]-]+[[:alnum:]]$/, username) and
+          not String.contains?(username, "--") do
+        changeset
+      else
+        add_error(changeset, field, "does not look like a Github username")
+      end
+    else
+      changeset
+    end
   end
 
   @doc ~S"""
