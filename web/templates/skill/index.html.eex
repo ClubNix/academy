@@ -2,6 +2,7 @@
   <h1>Available skills</h1>
 
   <div class="buttons">
+    <%= button "Edit my skills", to: skill_level_path(@conn, :edit), method: :get %>
     <%= button "Create a new skill", to: skill_path(@conn, :new), method: :get %>
     <%= button "Create a new category", to: skill_category_path(@conn, :new), method: :get %>
   </div>
