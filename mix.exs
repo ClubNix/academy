@@ -19,7 +19,8 @@ defmodule Academy.Mixfile do
   def application do
     [mod: {Academy, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
-                    :gettext, :phoenix_ecto, :postgrex, :alchemic_avatar]]
+                    :gettext, :phoenix_ecto, :postgrex, :guardian, :arc,
+                    :arc_ecto, :alchemic_avatar]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,6 +43,7 @@ defmodule Academy.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:guardian, "~> 0.12.0"},
+     {:exrm, "~> 1.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:earmark, "~> 0.1", only: :dev},
      {:ex_doc, "~> 0.11", only: :dev}]
