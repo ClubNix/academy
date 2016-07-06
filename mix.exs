@@ -43,7 +43,9 @@ defmodule Academy.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:guardian, "~> 0.12.0"},
-     {:exrm, "~> 1.0"},
+     {:exrm, "~> 1.0", override: true},
+     {:conform, "~> 2.0", override: true},
+     {:conform_exrm, "~> 1.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:earmark, "~> 0.1", only: :dev},
      {:ex_doc, "~> 0.11", only: :dev}]
