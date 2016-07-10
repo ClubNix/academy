@@ -2,6 +2,8 @@ import AJAX from "web/static/js/lib/ajax.js";
 import categorize from "web/static/js/lib/page-categorization.js";
 import Animations from "web/static/js/lib/animations.js";
 
+import { SearchWatcher, Searcher } from "web/static/js/front-search.js";
+
 function buildState(uri) {
 	return {
 		uri: uri,
@@ -29,6 +31,14 @@ function changePage(oldState, newState) {
 		.then(function() {
 			// Re-watch new links
 			Watcher.watch();
+		
+			if(oldState.category == "user-index") {
+				Searcher.clean();
+			}
+
+			if(newState.category == "user-index") {
+				SearchWatcher.watch();
+			}
 		});
 }
 

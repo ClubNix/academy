@@ -72,6 +72,12 @@ export var Searcher = {
 		Cards.clearAllHighlights();
 		Cards.undimAllSkills();
 		Cards.clearAllAddenda();
+	},
+
+	clean: function() {
+		console.log("Cleaning search.");
+		Searcher.clearSearch();
+		window.searchTreesBuilt = false;
 	}
 }
 
