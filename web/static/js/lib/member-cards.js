@@ -7,7 +7,7 @@ export default class MemberCard {
 			console.warn("Non-existent user bound: id = " + id);
 		}
 		this.addendum = this.htmlCard.querySelector(".addendum");
-		this.skillLevels = window.users[id - 1].skill_levels;
+		this.skillLevels = window.users[id].skill_levels;
 	}
 
 	highlightSkill(skillName) {
@@ -97,30 +97,41 @@ function rating(level) {
 export function buildAll(users) {
 	window.cards = [];
 	for(let user of users) {
-		window.cards.push(new MemberCard(user.id, user.name));
+		// Not using a continuous array
+		if(user) {
+			window.cards[user.id] = new MemberCard(user.id, user.name);
+		}
 	}
 }
 
 export function clearAllHighlights() {
 	for(let card of window.cards) {
-		card.clearHighlights();
+		if(card) {
+			card.clearHighlights();
+		}
 	}
 }
 
 export function dimAllSkills() {
 	for(let card of window.cards) {
-		card.dimSkills();
+		if(card) {
+			card.dimSkills();
+		}
 	}
 }
 
 export function undimAllSkills() {
 	for(let card of window.cards) {
-		card.undimSkills();
+		if(card) {
+			card.undimSkills();
+		}
 	}
 }
 
 export function clearAllAddenda() {
 	for(let card of window.cards) {
-		card.clearAddendum();
+		if(card) {
+			card.clearAddendum();
+		}
 	}
 }
