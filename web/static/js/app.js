@@ -26,5 +26,7 @@ export var App = {
 			console.log("search bar detected, running watcher");
 			require("./front-search").SearchWatcher.watch();
 		}
+
+		require("./dynamic-loading.js").Watcher.watch();
 	}
 }
