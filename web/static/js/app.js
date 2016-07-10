@@ -27,6 +27,11 @@ export var App = {
 			require("./front-search").SearchWatcher.watch();
 		}
 
+		if(document.querySelector(".input > input")) {
+			console.log("inputs detected, running watcher");
+			require("./forms").Watcher.watch();
+		}
+
 		require("./dynamic-loading.js").Watcher.init();
 	}
 }

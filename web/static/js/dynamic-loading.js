@@ -11,8 +11,22 @@ function buildState(uri) {
 	}
 }
 
+function copyFlashes(oldDoc, newDoc) {
+	newDoc.querySelector(".alert.alert-error").innerText = oldDoc.querySelector(".alert.alert-error").innerText;
+	newDoc.querySelector(".alert.alert-warn").innerText  = oldDoc.querySelector(".alert.alert-warn").innerText;
+	newDoc.querySelector(".alert.alert-info").innerText  = oldDoc.querySelector(".alert.alert-info").innerText;
+}
+
 function changePage(oldState, newState) {
 	Animations.prepareAnimateOut(document, oldState.category);
+
+	Animations.hideFlashes(document)
+		.then(function() {
+			for(let flashEl of document.querySelectorAll(".alert")) {
+				flashEl.innerText = "";
+			}
+		});
+
 	Animations.animateOut(document, oldState.category)
 		.then(function() {
 			return AJAX.html(newState.uri);
@@ -20,6 +34,10 @@ function changePage(oldState, newState) {
 		.then(function(doc) {
 			Animations.prepareAnimateIn(doc, newState.category);
 			document.querySelector("main").innerHTML = doc.querySelector("main").innerHTML;
+
+			copyFlashes(doc, document);
+			Animations.showFlashes(document);
+
 			// Dirty hack: let the browser have the time to relayout everything
 			return new Promise(function(resolve, reject) {
 				window.setTimeout((resolve) => resolve(), 50, resolve);
@@ -31,7 +49,7 @@ function changePage(oldState, newState) {
 		.then(function() {
 			// Re-watch new links
 			Watcher.watch();
-		
+
 			if(oldState.category == "user-index") {
 				Searcher.clean();
 			}
@@ -39,6 +57,11 @@ function changePage(oldState, newState) {
 			if(newState.category == "user-index") {
 				SearchWatcher.watch();
 			}
+
+			if(document.querySelector(".input > input")) {
+				require("./forms").Watcher.watch();
+			}
+
 		});
 }
 
@@ -80,7 +103,9 @@ export var Watcher = {
 
 	staticWatch: function() {
 		addLoadingListener(document.querySelector("header[role='banner'] > h1 > a"));
-		addLoadingListener(document.querySelector("nav[role='navigation'] a[href='/account']"));
+		for(let link of document.querySelectorAll("nav[role='navigation'] a")) {
+			addLoadingListener(link);
+		}
 	},
 
 	watch: function() {

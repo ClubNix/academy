@@ -3,7 +3,7 @@ function addOutClass(doc, elSelector) {
 }
 
 function addOutClasses(doc, elSelector) {
-	for(let el of doc.querySelector(elSelector)) {
+	for(let el of doc.querySelectorAll(elSelector)) {
 		el.classList.add("out");
 	}
 }
@@ -13,7 +13,7 @@ function removeOutClass(doc, elSelector) {
 }
 
 function removeOutClasses(doc, elSelector) {
-	for(let el of doc.querySelector(elSelector)) {
+	for(let el of doc.querySelectorAll(elSelector)) {
 		el.classList.remove("out");
 	}
 }
@@ -110,6 +110,22 @@ export default {
 			} else {
 				resolve();
 			}
+		});
+	},
+
+	hideFlashes: function(doc) {
+		console.log("Hiding flashes");
+		return new Promise(function(resolve, reject) {
+			addOutClasses(doc, ".alert");
+			window.setTimeout((resolve) => resolve(), 280, resolve);
+		});
+	},
+
+	showFlashes: function(doc) {
+		console.log("Showing flashes");
+		return new Promise(function(resolve, reject) {
+			removeOutClasses(doc, ".alert");
+			window.setTimeout((resolve) => resolve(), 280, resolve);
 		});
 	}
 

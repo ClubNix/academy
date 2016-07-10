@@ -3,6 +3,16 @@
 
 @import '_config'
 
+// =============
+// == Flashes ==
+// =============
+
+.alert
+	transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1)
+
+.alert.out
+	transform: translate3d(0, -5em, 0)
+
 // ============
 // == Search ==
 // ============
@@ -12,6 +22,9 @@
 
 .search.out
 	transform: translate3d(0, -3.5em, 0)
+
+.alert:not(:empty) ~ main .search.out
+	transform: translate3d(0, -7em, 0)
 
 // =================
 // == Small cards ==

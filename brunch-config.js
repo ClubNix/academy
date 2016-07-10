@@ -38,9 +38,9 @@ exports.config = {
     // By default, we set this to "/web/static/assets". Files in this directory
     // will be copied to `paths.public`, which is "priv/static" by default.
     assets: /^(web\/static\/assets)/,
-	ignored: [
-		/\/_/
-	]
+    ignored: [
+      /\/_/
+    ]
   },
 
   // Phoenix paths configuration
