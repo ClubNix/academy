@@ -36,7 +36,10 @@ export var Searcher = {
 			fetchUsers()
 				.then(function(users) {
 					console.log("Building search trees");
-					window.users = users;
+					window.users = [];
+					for(let user of users) {
+						window.users[user.id] = user;
+					}
 					buildSearchTrees(users);
 					window.searchTreesBuilt = true;
 					console.log("Building member cards objects.");
@@ -58,7 +61,7 @@ export var Searcher = {
 			for(let skillName in window.skills) {
 				if(skillName.toLowerCase().indexOf(query) != -1) {
 					for(let userId of window.skills[skillName]) {
-						window.cards[userId - 1].highlightSkill(skillName);
+						window.cards[userId].highlightSkill(skillName);
 					}
 				}
 			}
