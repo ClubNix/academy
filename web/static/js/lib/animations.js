@@ -36,59 +36,9 @@ export default {
 	prepareAnimateIn: function(doc, category) {
 		console.log("Preparing in of " + category);
 
-		let singleComponents   = animatableComponents[category].single;
-		let multipleComponents = animatableComponents[category].multiple;
-
-		for(let component of singleComponents) {
-			addOutClass(doc, component);
-		}
-
-		for(let component of multipleComponents) {
-			addOutClasses(doc, component);
-		}
-
-	},
-
-	animateIn: function(doc, category) {
-		console.log("Animating in of " + category);
-		return new Promise(function(resolve, reject) {
+		if(animatableComponents[category]) {
 			let singleComponents   = animatableComponents[category].single;
 			let multipleComponents = animatableComponents[category].multiple;
-			let timeout            = animatableComponents[category].timeout;
-
-			for(let component of singleComponents) {
-				removeOutClass(doc, component);
-			}
-
-			for(let component of multipleComponents) {
-				removeOutClasses(doc, component);
-			}
-
-			window.setTimeout((resolve) => resolve(), timeout, resolve);
-		});
-	},
-
-	prepareAnimateOut: function(doc, category) {
-		console.log("Preparing out of " + category);
-
-		let singleComponents   = animatableComponents[category].single;
-		let multipleComponents = animatableComponents[category].multiple;
-
-		for(let component of singleComponents) {
-			removeOutClass(doc, component);
-		}
-
-		for(let component of multipleComponents) {
-			removeOutClasses(doc, component);
-		}
-	},
-
-	animateOut: function(doc, category) {
-		console.log("Animating out of " + category);
-		return new Promise(function(resolve, reject) {
-			let singleComponents   = animatableComponents[category].single;
-			let multipleComponents = animatableComponents[category].multiple;
-			let timeout            = animatableComponents[category].timeout;
 
 			for(let component of singleComponents) {
 				addOutClass(doc, component);
@@ -97,8 +47,69 @@ export default {
 			for(let component of multipleComponents) {
 				addOutClasses(doc, component);
 			}
+		}
+	},
 
-			window.setTimeout((resolve) => resolve(), timeout, resolve);
+	animateIn: function(doc, category) {
+		console.log("Animating in of " + category);
+		return new Promise(function(resolve, reject) {
+			if(animatableComponents[category]) {
+				let singleComponents   = animatableComponents[category].single;
+				let multipleComponents = animatableComponents[category].multiple;
+				let timeout            = animatableComponents[category].timeout;
+
+				for(let component of singleComponents) {
+					removeOutClass(doc, component);
+				}
+
+				for(let component of multipleComponents) {
+					removeOutClasses(doc, component);
+				}
+
+				window.setTimeout((resolve) => resolve(), timeout, resolve);
+			} else {
+				resolve();
+			}
+		});
+	},
+
+	prepareAnimateOut: function(doc, category) {
+		console.log("Preparing out of " + category);
+
+		if(animatableComponents[category]) {
+			let singleComponents   = animatableComponents[category].single;
+			let multipleComponents = animatableComponents[category].multiple;
+
+			for(let component of singleComponents) {
+				removeOutClass(doc, component);
+			}
+
+			for(let component of multipleComponents) {
+				removeOutClasses(doc, component);
+			}
+		}
+	},
+
+	animateOut: function(doc, category) {
+		console.log("Animating out of " + category);
+		return new Promise(function(resolve, reject) {
+			if(animatableComponents[category]) {
+				let singleComponents   = animatableComponents[category].single;
+				let multipleComponents = animatableComponents[category].multiple;
+				let timeout            = animatableComponents[category].timeout;
+
+				for(let component of singleComponents) {
+					addOutClass(doc, component);
+				}
+
+				for(let component of multipleComponents) {
+					addOutClasses(doc, component);
+				}
+
+				window.setTimeout((resolve) => resolve(), timeout, resolve);
+			} else {
+				resolve();
+			}
 		});
 	}
 

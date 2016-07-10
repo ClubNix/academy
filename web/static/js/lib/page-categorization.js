@@ -14,7 +14,7 @@ function checkURI(uri, candidate) {
 export default function(uri) {
 	if(uri == "/" || checkURI("/users", uri)) {
 		return "user-index";
-	} else if(checkURI("/users/:user", uri)) {
+	} else if(checkURI("/users/:user", uri) || checkURI("/account", uri)) {
 		return "user-page";
 	}
 }

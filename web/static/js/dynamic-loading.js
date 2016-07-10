@@ -50,6 +50,13 @@ function goto(uri) {
 	window.currentState = newState;
 }
 
+function addLoadingListener(link) {
+	link.addEventListener("click", function(e) {
+		e.preventDefault();
+		goto(link.getAttribute("href"));
+	});
+}
+
 export var Watcher = {
 	init: function() {
 		window.currentState = buildState(window.location.pathname);
@@ -67,15 +74,18 @@ export var Watcher = {
 			window.currentState = e.state;
 		});
 
+		Watcher.staticWatch();
 		Watcher.watch();
+	},
+
+	staticWatch: function() {
+		addLoadingListener(document.querySelector("header[role='banner'] > h1 > a"));
+		addLoadingListener(document.querySelector("nav[role='navigation'] a[href='/account']"));
 	},
 
 	watch: function() {
 		for(let link of document.querySelectorAll(".member-card > a")) {
-			link.addEventListener("click", function(e) {
-				e.preventDefault();
-				goto(link.getAttribute("href"));
-			});
+			addLoadingListener(link);
 		}
 	}
 }

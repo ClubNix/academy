@@ -76,8 +76,10 @@ export var Searcher = {
 
 	clean: function() {
 		console.log("Cleaning search.");
-		Searcher.clearSearch();
-		window.searchTreesBuilt = false;
+		if(window.searchTreesBuilt) {
+			Searcher.clearSearch();
+			window.searchTreesBuilt = false;
+		}
 	}
 }
 
