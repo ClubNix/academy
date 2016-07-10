@@ -1,9 +1,30 @@
-import AJAX from "web/static/js/lib/ajax.js"
+import AJAX from "web/static/js/lib/ajax.js";
+import categorize from "web/static/js/lib/page-categorization.js";
+import Animations from "web/static/js/lib/animations.js";
 
-function updateContent(uri) {
-	AJAX.html(uri)
+function buildState(uri) {
+	return {
+		uri: uri,
+		category: categorize(uri)
+	}
+}
+
+function changePage(oldState, newState) {
+	Animations.prepareAnimateOut(document, oldState.category);
+	Animations.animateOut(document, oldState.category)
+		.then(function() {
+			return AJAX.html(newState.uri);
+		})
 		.then(function(doc) {
+			Animations.prepareAnimateIn(doc, newState.category);
 			document.querySelector("main").innerHTML = doc.querySelector("main").innerHTML;
+			// Dirty hack: let the browser have the time to relayout everything
+			return new Promise(function(resolve, reject) {
+				window.setTimeout((resolve) => resolve(), 50, resolve);
+			});
+		})
+		.then(function() {
+			Animations.animateIn(document, newState.category);
 		})
 		.then(function() {
 			// Re-watch new links
@@ -12,20 +33,28 @@ function updateContent(uri) {
 }
 
 function goto(uri) {
-	history.pushState({uri: uri}, document.title, uri);
-	updateContent(uri);
+	let oldState = history.state;
+	let newState = buildState(uri);
+	history.pushState(newState, document.title, newState.uri);
+	changePage(oldState, newState);
+	window.currentState = newState;
 }
 
 export var Watcher = {
 	init: function() {
-		history.replaceState({ uri: window.location.pathname }, document.title, window.location.pathname);
+		window.currentState = buildState(window.location.pathname);
+		history.replaceState(
+			window.currentState,
+			document.title,
+			window.location.pathname);
 
 		window.addEventListener("popstate", function(e) {
 			if(e.state == null) {
 				return;
 			}
 
-			updateContent(e.state.uri);
+			changePage(window.currentState, e.state);
+			window.currentState = e.state;
 		});
 
 		Watcher.watch();

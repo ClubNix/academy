@@ -1,0 +1,44 @@
+// Browser vendor prefixes library
+@import 'nib'
+
+@import '_config'
+
+// ============
+// == Search ==
+// ============
+
+.search
+	transition: transform  0.28s cubic-bezier(0.4, 0, 0.2, 1)
+
+.search.out
+	transform: translate3d(0, -3.5em, 0)
+
+// =================
+// == Small cards ==
+// =================
+
+add-member-card-transition(nth)
+	delay = n * 0.07s
+	section.member-card:nth-child({nth + 1})
+		transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+					transform  0.28s delay cubic-bezier(0.4, 0, 0.2, 1),
+					opacity    0.28s delay cubic-bezier(0.4, 0, 0.2, 1)
+
+for n in 0..20
+	add-member-card-transition(n)
+
+.member-card-grid.out section.member-card
+	transform: translate3d(-25em, 0, 0)
+	opacity: 0
+
+// ================
+// == Full cards ==
+// ================
+
+.member-card
+	transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+				opacity   0.28s cubic-bezier(0.4, 0, 0.2, 1)
+
+.member-card.out
+	transform: translate3d(0, -25em, 0)
+	opacity: 0
