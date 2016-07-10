@@ -103,7 +103,7 @@ export var Watcher = {
 
 	staticWatch: function() {
 		addLoadingListener(document.querySelector("header[role='banner'] > h1 > a"));
-		for(let link of document.querySelectorAll("nav[role='navigation'] a")) {
+		for(let link of document.querySelectorAll("nav[role='navigation'] a:not([href='/logout'])")) {
 			addLoadingListener(link);
 		}
 	},
