@@ -27,6 +27,6 @@ export var App = {
 			require("./front-search").SearchWatcher.watch();
 		}
 
-		require("./dynamic-loading.js").Watcher.watch();
+		require("./dynamic-loading.js").Watcher.init();
 	}
 }
