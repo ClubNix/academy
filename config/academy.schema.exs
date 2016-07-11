@@ -178,6 +178,57 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
       doc: "The port used to connect to the LDAP (default: non-ssl: 389, ssl: 636)",
       hidden: false,
       to: "academy.Elixir.Academy.Endpoint.LDAP.port"
+    ],
+    "academy.Elixir.Academy.Mailer.Limits.count": [
+      commented: false,
+      datatype: :integer,
+      default: 10,
+      doc: "The number of mail a user is allowed to send in the given time",
+      hidden: false,
+      to: "academy.Elixir.Academy.Mailer.Limits.count"
+    ],
+    "academy.Elixir.Academy.Mailer.Limits.every": [
+      commented: false,
+      datatype: :integer,
+      default: 60,
+      doc: "The time for which to take account the number of mail allowed to send (in seconds)",
+      hidden: false,
+      to: "academy.Elixir.Academy.Mailer.Limits.every"
+    ],
+    "academy.Elixir.Academy.Mailer.domain": [
+      commented: false,
+      datatype: :binary,
+      doc: "The Mailgun API base URL",
+      hidden: false,
+      to: "academy.Elixir.Academy.Mailer.domain"
+    ],
+    "academy.Elixir.Academy.Mailer.key": [
+      commented: false,
+      datatype: :binary,
+      doc: "The Mailgun API key",
+      hidden: false,
+      to: "academy.Elixir.Academy.Mailer.domain"
+    ],
+    "academy.Elixir.Academy.Mailer.mail": [
+      commented: false,
+      datatype: :binary,
+      doc: "The mail to use when sending mails e.g. \"Awesomeness <awesomness@example.org>\"",
+      hidden: false,
+      to: "academy.Elixir.Academy.Mailer.mail"
+    ],
+    "academy.Elixir.Academy.Mailer.mode": [
+      commented: false,
+      datatype: :atom,
+      doc: "Whether to truly send mail or not",
+      hidden: true,
+      to: "academy.Elixir.Academy.Mailer.mode"
+    ],
+    "academy.Elixir.Academy.Mailer.test_file_path": [
+      commented: false,
+      datatype: :atom,
+      doc: "The file used to store emails when not truly sending mails",
+      hidden: true,
+      to: "academy.Elixir.Academy.Mailer.test_file_path"
     ]
   ],
   transforms: [],
