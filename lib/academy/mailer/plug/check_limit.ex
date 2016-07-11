@@ -19,9 +19,7 @@ defmodule Academy.Mailer.Plug.CheckLimit do
         every: 60
   """
 
-  use Plug.Builder
-
-  plug Plug.Logger
+  require Logger
 
   import Plug.Conn
 
@@ -37,7 +35,9 @@ defmodule Academy.Mailer.Plug.CheckLimit do
   end
 
   def call(conn, options) do
-    if check(conn.private[:academy_mail_count], conn.private[:academy_mail_ts]) do
+    count = get_session(conn, :mail_count)
+    ts = get_session(conn, :mail_ts)
+    if check(count, ts) do
       conn
     else
       handle_error conn, options
@@ -45,7 +45,9 @@ defmodule Academy.Mailer.Plug.CheckLimit do
   end
 
   defp handle_error(%Plug.Conn{params: params} = conn, options) do
-    halt conn
+    Logger.warn("User attempted to send to many email. Current user: #{get_current_username(conn)}")
+
+    conn = halt conn
 
     mod  = options.handler
     func = options.handler_func
@@ -60,6 +62,13 @@ defmodule Academy.Mailer.Plug.CheckLimit do
       true
     else
       count < @count
+    end
+  end
+
+  defp get_current_username(conn) do
+    case Academy.SessionController.current_user(conn) do
+      nil -> "nil"
+      user -> user.name
     end
   end
 

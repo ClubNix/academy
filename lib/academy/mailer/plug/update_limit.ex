@@ -16,10 +16,6 @@ defmodule Academy.Mailer.Plug.UpdateLimit do
         every: 60
   """
 
-  use Plug.Builder
-
-  plug Plug.Logger
-
   import Plug.Conn
 
   @config Application.get_env(:academy, Academy.Mailer.Limits, [])
@@ -28,8 +24,8 @@ defmodule Academy.Mailer.Plug.UpdateLimit do
   def init(_options), do: false
 
   def call(conn, _options) do
-    count = Map.get(conn.private, :academy_mail_count, 0)
-    last_ts    = Map.get(conn.private, :academy_mail_ts, 0)
+    count   = get_session_field(conn, :mail_count, 0)
+    last_ts = get_session_field(conn, :mail_ts, 0)
 
     current_ts = :os.system_time(:seconds)
 
@@ -40,8 +36,15 @@ defmodule Academy.Mailer.Plug.UpdateLimit do
     end
 
     conn
-    |> put_private(:academy_mail_count, count)
-    |> put_private(:academy_mail_ts, ts)
+    |> put_session(:mail_count, count)
+    |> put_session(:mail_ts, ts)
+  end
+
+  defp get_session_field(conn, key, default \\ nil) do
+    case get_session(conn, key) do
+      nil -> default
+      value -> value
+    end
   end
 
 end

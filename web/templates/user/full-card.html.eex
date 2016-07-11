@@ -14,12 +14,19 @@
       <% end %>
       <ul class="social">
         <%= if @user.email do %>
-          <li>
-            <a href="mailto:<%= @user.email %>">
-              <img src="/images/mail-symbol.svg" alt="Mail symbol">
-              <%= @user.email %>
-            </a>
-          </li>
+          <%= if @user.show_email do %>
+            <li>
+              <a href="mailto:<%= @user.email %>">
+                <img src="/images/mail-symbol.svg" alt="Mail symbol">
+                <%= @user.email %>
+              </a>
+            </li>
+          <%= else %>
+            <li>
+                <img src="/images/mail-symbol.svg" alt="Mail symbol">
+                <%= link "Send an email", to: mail_path(@conn, :new, @user.name) %>
+            </li>
+          <% end %>
         <% end %>
         <%= if @user.github_username do %>
           <li>

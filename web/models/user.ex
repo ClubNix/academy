@@ -44,6 +44,7 @@ defmodule Academy.User do
     field :available, :boolean
     field :avatar, Academy.Avatar.Type
     field :email, :string
+    field :show_email, :boolean, default: false
     field :github_username, :string
 
     has_many :skill_levels, Academy.SkillLevel
@@ -53,7 +54,7 @@ defmodule Academy.User do
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name show_email)
   @optional_fields ~w(bio available email github_username)
 
   @doc ~S"""

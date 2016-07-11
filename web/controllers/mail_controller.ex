@@ -16,7 +16,7 @@ defmodule Academy.MailController do
      render conn, "new.html", username: username
   end
 
-  def send(conn, %{"user" => username, "mail" => mail_params}) do
+  def send(conn, %{"user" => _username, "mail" => mail_params}) do
     Academy.Mailer.send(mail_params["subject"], mail_params["message"], conn.assigns[:recipient])
     conn
     |> put_flash(:info, "Email sent successfully")

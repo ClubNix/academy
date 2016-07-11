@@ -9,6 +9,7 @@ defmodule Academy.Repo.Migrations.CreateUser do
       add :avatar, :string
 
       add :email, :string, null: true
+      add :show_email, :boolean, default: false
       add :github_username, :string, null: true
 
       timestamps
