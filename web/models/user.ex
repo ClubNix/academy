@@ -116,7 +116,7 @@ defmodule Academy.User do
   Currently not working.
   """
   def validate_avatar(changeset, params) do
-    IO.inspect params
+    # TODO: validate the size/space usage of the image
     changeset
   end
 

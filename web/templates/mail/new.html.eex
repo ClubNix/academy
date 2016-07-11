@@ -1,0 +1,21 @@
+<section class="new-mail form">
+
+  <h1>New mail for: <%= String.capitalize @username %></h1>
+
+  <%= form_for @conn, mail_path(@conn, :send, @username), [as: "mail"], fn f -> %>
+
+    <%= input_group f, :subject do %>
+      <%= text_input f, :subject, required: "" %>
+      <%= label f, :subject, class: "text-input" %>
+    <% end %>
+
+    <%= input_group f, :message do %>
+      <%= label f, :message %>
+      <%= textarea f, :message %>
+    <% end %>
+
+    <%= submit "Send mail" %>
+
+  <% end %>
+
+</section>

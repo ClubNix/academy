@@ -41,3 +41,7 @@ config :phoenix, :generators,
 config :alchemic_avatar,
   colors_palette: :iwanthue,
   app_name: :academy
+
+config :academy, Academy.Mailer.Limits,
+  count: 10,
+  every: 60

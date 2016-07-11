@@ -10,7 +10,10 @@ defmodule Academy.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
-     deps: deps]
+     deps: deps,
+     source_url: "https://github.com/ClubNix/academy",
+     homepage_url: "https://github.com/ClubNix/academy",
+     docs: [extras: ["README.md"]]]
   end
 
   # Configuration for the OTP application.
@@ -20,7 +23,7 @@ defmodule Academy.Mixfile do
     [mod: {Academy, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
                     :gettext, :phoenix_ecto, :postgrex, :guardian, :arc,
-                    :arc_ecto, :alchemic_avatar]]
+                    :arc_ecto, :alchemic_avatar, :mailgun, :earmark]]
   end
 
   # Specifies which paths to compile per environment.
@@ -43,11 +46,13 @@ defmodule Academy.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:guardian, "~> 0.12.0"},
+     {:mailgun, "~> 0.1.2"},
+     {:earmark, "~> 0.1"},
+     {:poison, "~> 2.1", override: true},
      {:exrm, "~> 1.0", override: true},
      {:conform, "~> 2.0", override: true},
      {:conform_exrm, "~> 1.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
-     {:earmark, "~> 0.1", only: :dev},
      {:ex_doc, "~> 0.11", only: :dev}]
   end
 

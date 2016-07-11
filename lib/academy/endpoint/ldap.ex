@@ -8,8 +8,6 @@ defmodule Academy.Endpoint.LDAP do
   The configuration should be in the dev.secret.exs or prod.secret.exs depending
   on the environment you're working on. Here's an example config:
 
-      use Mix.Config
-
       config :academy, Academy.Endpoint.LDAP,
         host: "ldap.my-organisation.org",
         base: "dc=myorganisation,dc=org",

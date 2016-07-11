@@ -9,17 +9,14 @@ defmodule Conform.Types.JWK do
   def to_doc(_values), do: "Allowed values: A JSON Web Key. You can generate one using `mix gen.jwk`"
 
   def convert(nil, %Mapping{default: nil}) do
-    IO.puts "hello"
     {:error, "You must specify a JSON Web key"}
   end
 
   def convert(nil, %Mapping{default: default}) do
-    IO.puts "hello"
     {:ok, default}
   end
   
   def convert(binary_key, _mappings) do
-    IO.puts "hello"
     {_metadata, key} = binary_key
                       |> to_string
                       |> JOSE.JWK.from_binary

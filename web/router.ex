@@ -49,6 +49,9 @@ defmodule Academy.Router do
     post      "/skill_categories/new",      SkillCategoryController, :create
     patch     "/skill_categories/:id/edit", SkillCategoryController, :update
     put       "/skill_categories/:id/edit", SkillCategoryController, :update
+
+    get  "/mail/:user", MailController, :new
+    post "/mail/:user", MailController, :send
   end
 
   scope "/api", Academy do
