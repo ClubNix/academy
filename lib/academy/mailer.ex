@@ -29,9 +29,18 @@ defmodule Academy.Mailer do
 
   use Mailgun.Client, @config
 
+  @spec send(binary, binary, binary) :: {:ok, binary} | {:error, integer, binary} | {:error, :bad_fetch, atom}
+
+  @doc ~S"""
+  Send a mail to a given email address.
+
+  The message will be sent both in text and HTML. The HTML version will be
+  deducted from the message by escaping HTML components, and converting it from
+  Markdown to HTML.
+  """
   def send(subject, message, recipient) do
     # TODO: Better HTML escaping (HTML special chars are too much escaped
-     #      inside code blocks)
+    #       inside code blocks)
     send_email from: @mail,
                to: recipient,
                subject: "[Academy] #{subject}",

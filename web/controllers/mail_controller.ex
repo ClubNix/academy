@@ -12,6 +12,8 @@ defmodule Academy.MailController do
   plug Academy.Mailer.Plug.CheckLimit, handler: __MODULE__
   plug Academy.Mailer.Plug.UpdateLimit when action == :send
 
+  @behaviour Academy.Mailer.Plug.CheckLimit
+
   def new(conn, %{"user" => username}) do
      render conn, "new.html", username: username
   end

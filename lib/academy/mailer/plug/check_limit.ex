@@ -9,7 +9,7 @@ defmodule Academy.Mailer.Plug.CheckLimit do
       plug Academy.Mailer.CheckLimit, handler: MyModule
 
   If the user has reached the mail limit, the function
-  `MyModule.mail_limit_reached/2` will be called, with the `conn` and its
+  `mail_limit_reached/2` of `MyModule` will be called, with the `conn` and its
   `params`.
 
   ## Example config
@@ -27,6 +27,22 @@ defmodule Academy.Mailer.Plug.CheckLimit do
   @count Keyword.get(@config, :count, 10)
   @every Keyword.get(@config, :every, 60)
 
+  @doc ~S"""
+  Function called when the user has reached the limit of mail sending.
+
+  The first param will be the current `conn` and the second param the `params`
+  for the current request.
+  """
+  @callback mail_limit_reached(Plug.Conn.t, Plug.Conn.params) :: Plug.Conn.t
+
+  @type module_options :: [handler: module]
+  @type module_config :: %{handler: module, handler_func: atom}
+
+  @spec init(module_options) :: module_config
+
+  @doc ~S"""
+  Init the plug.
+  """
   def init(options) do
     %{
       handler: Keyword.get(options, :handler),
@@ -34,6 +50,14 @@ defmodule Academy.Mailer.Plug.CheckLimit do
     }
   end
 
+  @spec call(Plug.Conn.t, module_config) :: Plug.Conn.t
+
+  @doc ~S"""
+  Call the plug.
+
+  Will check if the current connection didn't reach the mail sent limit, and
+  will call the `mail_limit_reached/2` if necessary.
+  """
   def call(conn, options) do
     count = get_session(conn, :mail_count)
     ts = get_session(conn, :mail_ts)

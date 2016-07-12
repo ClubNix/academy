@@ -3,6 +3,8 @@ defmodule Release.Tasks do
   Tasks to be done when creating / upgrading a production environment.
   """
 
+  @spec migrate() :: :ok
+
   @doc ~S"""
   Migrate the database. Equivalent to the `mix ecto.migrate` command.
   """

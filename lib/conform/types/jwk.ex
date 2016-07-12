@@ -6,8 +6,20 @@ defmodule Conform.Types.JWK do
   use Conform.Type
   alias Conform.Schema.Mapping
 
+  @spec to_doc(term) :: binary
+
+  @doc ~S"""
+  Print a nice doc message for JWK types in conform configurations.
+
+  Callback implementation for `Conform.Type.to_doc/1`
+  """
   def to_doc(_values), do: "Allowed values: A JSON Web Key. You can generate one using `mix gen.jwk`"
 
+  @spec convert(nil | binary, Mapping.t) :: {:ok, JOSE.JWK.t} | {:error, binary}
+
+  @doc ~S"""
+  Convert a given conform configuration value to a JOSE.JWK value.
+  """
   def convert(nil, %Mapping{default: nil}) do
     {:error, "You must specify a JSON Web key"}
   end

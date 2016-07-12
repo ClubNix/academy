@@ -23,6 +23,9 @@ defmodule Academy.Endpoint.LDAP do
   use GenServer
   require Logger
 
+  @type ldap_conn :: :eldap.handle
+  @type auth_status :: :ok | {:error, atom}
+
   unless Application.get_env(:academy, Academy.Endpoint.LDAP) do
     raise "Please configure the LDAP in the config files"
   end
@@ -40,6 +43,8 @@ defmodule Academy.Endpoint.LDAP do
   @base  Dict.get(@settings, :base, "")        |> :erlang.binary_to_list
   @where Dict.get(@settings, :where, "People") |> :erlang.binary_to_list
 
+  @spec start_link() :: Genserver.on_start
+
   @doc ~S"""
   Start the LDAP process.
 
@@ -49,6 +54,8 @@ defmodule Academy.Endpoint.LDAP do
   def start_link() do
     GenServer.start_link(__MODULE__, :ok, name: LDAP)
   end
+
+  @spec init(:ok) :: {:ok, ldap_conn}
 
   @doc ~S"""
   Init the LDAP connection.
@@ -65,6 +72,10 @@ defmodule Academy.Endpoint.LDAP do
     Logger.info("Connected to LDAP")
     {:ok, ldap_conn}
   end
+
+  @type reason :: :normal | :shutdown | {:shutdown, term} | term
+
+  @spec terminate(reason, ldap_conn) :: :ok
 
   @doc ~S"""
   Terminate the LDAP connection.
@@ -89,6 +100,8 @@ defmodule Academy.Endpoint.LDAP do
 
   end
 
+  @spec check_credentials(charlist | binary, charlist | binary) :: boolean
+
   @doc ~S"""
   Check the given credentials.
 
@@ -102,6 +115,8 @@ defmodule Academy.Endpoint.LDAP do
   def check_credentials(username, password) do
     check_credentials(:erlang.binary_to_list(username), :erlang.binary_to_list(password))
   end
+
+  @spec ldap_escape(charlist) :: charlist
 
   @doc ~S"""
   Escape special LDAP characters in a string.

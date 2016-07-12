@@ -21,8 +21,16 @@ defmodule Academy.Mailer.Plug.UpdateLimit do
   @config Application.get_env(:academy, Academy.Mailer.Limits, [])
   @every Keyword.get(@config, :every, 60)
 
+  @doc false
   def init(_options), do: false
 
+  @spec call(Plug.Conn.t, false) :: Plug.Conn.t
+
+  @doc ~S"""
+  Call the plug.
+
+  Will update the current limit status regarding the current connection.
+  """
   def call(conn, _options) do
     count   = get_session_field(conn, :mail_count, 0)
     last_ts = get_session_field(conn, :mail_ts, 0)
