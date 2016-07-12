@@ -53,6 +53,7 @@ defmodule Academy.Mixfile do
      {:conform, "~> 2.0", override: true},
      {:conform_exrm, "~> 1.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
+     {:inch_ex, "~> 0.5", only: [:dev, :test]},
      {:ex_doc, "~> 0.11", only: :dev}]
   end
 

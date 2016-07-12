@@ -1,5 +1,7 @@
 # academy
 
+[![Inline docs](http://inch-ci.org/github/ClubNix/academy.svg)](http://inch-ci.org/github/ClubNix/academy)
+
 A member skill database
 
 ## Run
