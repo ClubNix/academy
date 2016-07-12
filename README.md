@@ -1,5 +1,7 @@
 # academy
 
+[![Deps Status](https://beta.hexfaktor.org/badge/all/github/ClubNix/academy.svg)](https://beta.hexfaktor.org/github/ClubNix/academy)
+[![Prod Deps Status](https://beta.hexfaktor.org/badge/prod/github/ClubNix/academy.svg)](https://beta.hexfaktor.org/github/ClubNix/academy)
 [![Inline docs](http://inch-ci.org/github/ClubNix/academy.svg)](http://inch-ci.org/github/ClubNix/academy)
 
 A member skill database
