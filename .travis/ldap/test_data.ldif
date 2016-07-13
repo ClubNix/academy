@@ -1,5 +1,10 @@
+dn: ou=People,dc=test,dc=com
+objectclass: organizationalunit
+ou: People
+
 dn: uid=testuser,ou=People,dc=test,dc=com
 uid: testuser
+cn: Test User
 objectClass: account
 objectClass: posixAccount
 objectClass: top
@@ -8,4 +13,5 @@ uidnumber: 500
 gidnumber: 120
 homedirectory: /home/testuser
 gecos: Test User,,,,
-userpassword: {CLEARTEXT}test
+userpassword: {SSHA}AIzygLSXlArhAMzddUriXQxf7UlkqopP
+# userpassword: {CLEARTEXT}test
