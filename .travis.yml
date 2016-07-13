@@ -6,5 +6,22 @@ otp_release:
   - 18.0
   - 19.0
 sudo: false
+services:
+  - postgresql
+addons:
+  apt:
+    packages:
+      - ldap-utils
+      - slapd
+env:
+  global:
+    - MIX_ENV=travis
+before_script:
+  - mkdir /tmp/slapd
+  - slapd -f .travis/ldap/slapd.conf -h ldap://localhost:3389 &
+  - sleep 3
+  - ldapadd -h localhost:3389 -D cn=admin,dc=test,dc=com -w admin -f .travis/ldap/base.ldif
+  - ldapadd -h localhost:3389 -D cn=admin,dc=test,dc=com -w admin -f .travis/ldap/test_data.ldif
+  - mix ecto.setup
 after_script:
   - mix inch.report

@@ -29,10 +29,6 @@ config :guardian, Guardian,
   verify_issuer: true, # optional
   serializer: Academy.UserSerializer
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
-
 # Configure phoenix generators
 config :phoenix, :generators,
   migration: true,
@@ -45,3 +41,7 @@ config :alchemic_avatar,
 config :academy, Academy.Mailer.Limits,
   count: 10,
   every: 60
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"

@@ -1,0 +1,11 @@
+dn: uid=testuser,ou=People,dc=test,dc=com
+uid: testuser
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+loginshell: /bin/bash
+uidnumber: 500
+gidnumber: 120
+homedirectory: /home/testuser
+gecos: Test User,,,,
+userpassword: {CLEARTEXT}test
