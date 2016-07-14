@@ -102,12 +102,21 @@ defmodule Academy.User do
   def validate_github_username(changeset, field) do
     username = get_field(changeset, field)
     if username !== nil do
-      if Regex.match?(~r/^[[:alnum:]][[:alnum:]-]+[[:alnum:]]$/, username) and
-          not String.contains?(username, "--") do
+
+      valid? = case String.length username do
+        0 -> false
+        1 -> Regex.match?(~r/^[[:alnum:]]+$/, username)
+        2 -> Regex.match?(~r/^[[:alnum:]]+$/, username)
+        _ -> Regex.match?(~r/^[[:alnum:]][[:alnum:]-]+[[:alnum:]]$/, username) and
+          not String.contains?(username, "--")
+      end
+
+      if valid? do
         changeset
       else
         add_error(changeset, field, "does not look like a Github username")
       end
+
     else
       changeset
     end
