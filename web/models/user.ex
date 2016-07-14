@@ -54,8 +54,9 @@ defmodule Academy.User do
     timestamps
   end
 
-  @required_fields ~w(name show_email)
-  @optional_fields ~w(bio available email github_username)
+  @required_fields ~w(name show_email)a
+  @optional_fields ~w(bio available email github_username)a
+  @fields @required_fields ++ @optional_fields
 
   @doc ~S"""
   Creates a changeset based on the `model` and `params`.
@@ -76,7 +77,8 @@ defmodule Academy.User do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @fields)
+    |> validate_required(@required_fields)
     |> cast_attachments(params, [:avatar])
     |> validate_length(:bio, min: 10, max: 140)
     |> validate_email(:email)

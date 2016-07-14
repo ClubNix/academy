@@ -22,8 +22,9 @@ defmodule Academy.Skill do
     timestamps
   end
 
-  @required_fields ~w(name description)
+  @required_fields ~w(name description category_id)a
   @optional_fields ~w()
+  @fields @required_fields ++ @optional_fields
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -32,9 +33,9 @@ defmodule Academy.Skill do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
-    |> cast_assoc(:category)
-    |> validate_required(:name)
+    |> cast(params, @fields)
+    |> validate_required(@required_fields)
     |> validate_length(:description, min: 10, max: 50)
+    |> assoc_constraint(:category)
   end
 end

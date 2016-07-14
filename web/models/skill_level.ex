@@ -20,8 +20,9 @@ defmodule Academy.SkillLevel do
     belongs_to :skill, Academy.Skill
   end
 
-  @required_fields ~w(level user_id skill_id)
+  @required_fields ~w(level user_id skill_id)a
   @optional_fields ~w()
+  @fields @required_fields ++ @optional_fields
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -30,7 +31,10 @@ defmodule Academy.SkillLevel do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @fields)
+    |> validate_required(@required_fields)
     |> validate_number(:level, greater_than: 0, less_than: 5)
+    |> assoc_constraint(:user)
+    |> assoc_constraint(:skill)
   end
 end
