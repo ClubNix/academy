@@ -49,7 +49,7 @@ defmodule Academy.Mixfile do
      {:cowboy, "~> 1.0"},
      {:guardian, "~> 0.12.0"},
      {:mailgun, "~> 0.1.2"},
-     {:earmark, "~> 0.1"},
+     {:earmark, "~> 1.0"},
      {:poison, "~> 2.1", override: true},
      {:exrm, "~> 1.0", override: true},
      {:conform, "~> 2.0", override: true},
