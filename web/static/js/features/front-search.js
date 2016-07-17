@@ -6,23 +6,24 @@ function fetchUsers() {
 }
 
 function buildSearchTrees(users) {
-	window.skills = {};
-	window.usernames = {};
+	let skills = {};
 	for(let user of users) {
-		window.usernames[user.name] = user.id;
-		partialBuildSkillTree(user);
-	}
-}
+		for(let skillLevel of user.skill_levels) {
+			let skillName = skillLevel.skill.name;
 
-function partialBuildSkillTree(user) {
-	for(let skillLevel of user.skill_levels) {
-		let skillName = skillLevel.skill.name;
-		if(window.skills[skillName]) {
-			window.skills[skillName].push(user.id);
-		} else {
-			window.skills[skillName] = [user.id];
+			if(skills[skillName]) {
+				skills[skillName].push(user.id);
+			} else {
+				skills[skillName] = [user.id];
+			}
+
 		}
 	}
+	return skills;
+}
+
+function match(base, query) {
+	return base.indexOf(query) !== -1;
 }
 
 function empty(string) {
@@ -30,66 +31,77 @@ function empty(string) {
 }
 
 export var Searcher = {
-	init: function() {
+	init: function(elId) {
 		if(!window.searchTreesBuilt) {
 			console.log("Fetching users.");
 			fetchUsers()
-				.then(function(users) {
-					console.log("Building search trees");
-					window.users = [];
-					for(let user of users) {
-						window.users[user.id] = user;
+				.then(function(apiUsers) {
+					let users = [];
+					for(let user of apiUsers) {
+						users[user.id] = user;
 					}
-					buildSearchTrees(users);
+
+					console.log("Building search trees");
+					let skills = buildSearchTrees(apiUsers);
 					window.searchTreesBuilt = true;
+
 					console.log("Building member cards objects.");
-					Cards.buildAll(window.users);
+					let cards = Cards.buildAll(users);
 					console.log("Done.");
-					Searcher.search();
+
+					Searcher.search(cards, skills);
+					SearchWatcher.watchInput(elId, cards, skills);
 				});
 		}
 	},
 
-	search: function() {
+	search: function(cards, skills) {
 		let query = document.getElementById("search-bar").value.toLowerCase();
 		if(window.searchTreesBuilt && !empty(query)) {
+
 			console.log("Searching for: " + query);
-			Cards.clearAllHighlights();
-			Cards.dimAllSkills();
-			Cards.clearAllAddenda();
-			let matches = [];
-			for(let skillName in window.skills) {
-				if(skillName.toLowerCase().indexOf(query) != -1) {
-					for(let userId of window.skills[skillName]) {
-						window.cards[userId].highlightSkill(skillName);
+			Searcher.partialClear(cards);
+			Cards.dimAllSkills(cards);
+
+			for(let skillName in skills) {
+				if(match(skillName.toLowerCase(), query)) {
+					for(let userId of skills[skillName]) {
+						cards[userId].highlightSkill(skillName);
 					}
 				}
 			}
+
 		} else if(empty(query)) {
-			Searcher.clearSearch();
+			Searcher.clear(cards);
 		}
 	},
 
-	clearSearch: function() {
+	partialClear: function(cards) {
+		Cards.clearAllHighlights(cards);
+		Cards.clearAllAddenda(cards);
+	},
+
+	clear: function(cards) {
 		console.log("Clearing search.");
-		Cards.clearAllHighlights();
-		Cards.undimAllSkills();
-		Cards.clearAllAddenda();
+		Searcher.partialClear(cards);
+		Cards.undimAllSkills(cards);
 	}
 }
 
 export var SearchWatcher = {
-	watch: function(elId) {
-		document.getElementById(elId).addEventListener("input", function() {
-			Searcher.search();
-		});
-
+	watchFocus: function(elId) {
 		document.getElementById(elId).addEventListener("focus", function() {
-			Searcher.init();
+			Searcher.init(elId);
+		});
+	},
+
+	watchInput: function(elId, cards, skills) {
+		document.getElementById(elId).addEventListener("input", function() {
+			Searcher.search(cards, skills);
 		});
 	}
 }
 
 export var setup = function(config) {
-	SearchWatcher.watch(config["search-bar-id"]);
+	SearchWatcher.watchFocus(config["search-bar-id"]);
 }

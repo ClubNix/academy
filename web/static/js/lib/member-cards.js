@@ -1,5 +1,5 @@
 export default class MemberCard {
-	constructor(id, name) {
+	constructor(id, name, skillLevels) {
 		this.id = id;
 		this.name = name;
 		this.htmlCard = document.getElementById("member-" + id);
@@ -7,7 +7,7 @@ export default class MemberCard {
 			console.warn("Non-existent user bound: id = " + id);
 		}
 		this.addendum = this.htmlCard.querySelector(".addendum");
-		this.skillLevels = window.users[id].skill_levels;
+		this.skillLevels = skillLevels;
 	}
 
 	highlightSkill(skillName) {
@@ -95,41 +95,42 @@ function rating(level) {
 }
 
 export function buildAll(users) {
-	window.cards = [];
+	let cards = [];
 	for(let user of users) {
 		// Not using a continuous array
 		if(user) {
-			window.cards[user.id] = new MemberCard(user.id, user.name);
+			cards[user.id] = new MemberCard(user.id, user.name, user.skill_levels);
 		}
 	}
+	return cards;
 }
 
-export function clearAllHighlights() {
-	for(let card of window.cards) {
+export function clearAllHighlights(cards) {
+	for(let card of cards) {
 		if(card) {
 			card.clearHighlights();
 		}
 	}
 }
 
-export function dimAllSkills() {
-	for(let card of window.cards) {
+export function dimAllSkills(cards) {
+	for(let card of cards) {
 		if(card) {
 			card.dimSkills();
 		}
 	}
 }
 
-export function undimAllSkills() {
-	for(let card of window.cards) {
+export function undimAllSkills(cards) {
+	for(let card of cards) {
 		if(card) {
 			card.undimSkills();
 		}
 	}
 }
 
-export function clearAllAddenda() {
-	for(let card of window.cards) {
+export function clearAllAddenda(cards) {
+	for(let card of cards) {
 		if(card) {
 			card.clearAddendum();
 		}
