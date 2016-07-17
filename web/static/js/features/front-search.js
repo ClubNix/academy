@@ -79,13 +79,17 @@ export var Searcher = {
 }
 
 export var SearchWatcher = {
-	watch: function() {
-		document.getElementById("search-bar").addEventListener("input", function() {
+	watch: function(elId) {
+		document.getElementById(elId).addEventListener("input", function() {
 			Searcher.search();
 		});
 
-		document.getElementById("search-bar").addEventListener("focus", function() {
+		document.getElementById(elId).addEventListener("focus", function() {
 			Searcher.init();
 		});
 	}
+}
+
+export var setup = function(config) {
+	SearchWatcher.watch(config["search-bar-id"]);
 }

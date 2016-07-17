@@ -10,3 +10,9 @@
   <%= end %>
 
 </div>
+
+<script>
+  window.features = {
+    "front-search": {"search-bar-id": "search-bar"}
+  }
+</script>

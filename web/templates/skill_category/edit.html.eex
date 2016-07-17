@@ -9,3 +9,9 @@
                           action: skill_category_path(@conn, :update, id),
                           submit_text: "Change skill category" %>
 </section>
+
+<script>
+  window.features = {
+    "forms": {}
+  }
+</script>

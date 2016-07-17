@@ -6,3 +6,9 @@
                           action: skill_path(@conn, :create),
                           submit_text: "Create skill" %>
 </section>
+
+<script>
+  window.features = {
+    "forms": {}
+  }
+</script>

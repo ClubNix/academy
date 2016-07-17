@@ -6,3 +6,9 @@
                           action: skill_path(@conn, :update, @skill.id),
                           submit_text: "Change skill" %>
 </section>
+
+<script>
+  window.features = {
+    "forms": {}
+  }
+</script>

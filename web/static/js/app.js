@@ -22,9 +22,8 @@ import "phoenix_html"
 
 export var App = {
 	run: function() {
-		if(document.getElementById("search-bar")) {
-			console.log("search bar detected, running watcher");
-			require("./front-search").SearchWatcher.watch();
+		for(let feature in window.features) {
+			require("./features/" + feature).setup(window.features[feature]);
 		}
 	}
 }

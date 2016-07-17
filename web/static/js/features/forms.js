@@ -20,8 +20,6 @@ function watchForInputFilling() {
 	}
 }
 
-if (document.readyState != 'loading'){
+export var setup = function(config) {
 	watchForInputFilling();
-} else {
-	document.addEventListener('DOMContentLoaded', watchForInputFilling);
 }

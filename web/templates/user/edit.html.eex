@@ -47,3 +47,9 @@
     <%= submit "Save changes" %>
   <% end %>
 </section>
+
+<script>
+  window.features = {
+    "forms": {}
+  }
+</script>

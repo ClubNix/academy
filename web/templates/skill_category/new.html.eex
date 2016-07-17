@@ -5,3 +5,9 @@
                           action: skill_category_path(@conn, :create),
                           submit_text: "Create skill category" %>
 </section>
+
+<script>
+  window.features = {
+    "forms": {}
+  }
+</script>
