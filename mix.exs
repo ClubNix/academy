@@ -23,7 +23,8 @@ defmodule Academy.Mixfile do
     [mod: {Academy, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
                     :gettext, :phoenix_ecto, :postgrex, :guardian, :arc,
-                    :arc_ecto, :alchemic_avatar, :mailgun, :earmark]]
+                    :arc_ecto, :alchemic_avatar, :mailgun, :earmark, :conform,
+                    :conform_exrm, :runtime_tools]]
   end
 
   # Specifies which paths to compile per environment.
