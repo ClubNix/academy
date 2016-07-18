@@ -5,17 +5,22 @@ defmodule Academy.ErrorViewTest do
   import Phoenix.View
 
   test "renders 404.html" do
-    assert render_to_string(Academy.ErrorView, "404.html", []) ==
-           "Page not found"
+    assert render_to_string(Academy.ErrorView, "404.html", []) =~
+           "404 Not found"
   end
 
   test "render 500.html" do
-    assert render_to_string(Academy.ErrorView, "500.html", []) ==
-           "Server internal error"
+    assert render_to_string(Academy.ErrorView, "500.html", []) =~
+           "500 Server internal error"
+  end
+
+  test "render 401.html" do
+    assert render_to_string(Academy.ErrorView, "401.html", []) =~
+           "401 Not authorized"
   end
 
   test "render any other" do
-    assert render_to_string(Academy.ErrorView, "505.html", []) ==
-           "Server internal error"
+    assert render_to_string(Academy.ErrorView, "505.html", []) =~
+           "500 Server internal error"
   end
 end

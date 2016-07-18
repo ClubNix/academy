@@ -1,3 +1,3 @@
 <%= render "error.html", error_code: 404,
-                         error_description: "Not Found",
-                         error_message: "That's okay, everybody is lost in its own way…" %>
+                         error_description: "Not found",
+                         error_message: "It's fine, everybody is lost in life sometimes…" %>
