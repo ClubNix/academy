@@ -1,0 +1,13 @@
+<div class="http-error">
+
+  <div class="error-text">
+    <h1><%= "#{@error_code} #{@error_description}" %></h1>
+    <p>
+      <%= @error_message %><br>
+      You can always <a href="https://github.com/ClubNix/academy/issues">report an issue</a>
+    </p>
+  </div>
+
+  <img src="/images/<%= @error_code %>.svg" alt="<%= @error_code %> Picture">
+
+</div>

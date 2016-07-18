@@ -1,0 +1,3 @@
+<%= render "error.html", error_code: 500,
+                         error_description: "Server internal error",
+                         error_message: "That's okay, the only one who will have to put up with that is you." %>
