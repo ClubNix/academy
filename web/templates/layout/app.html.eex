@@ -40,35 +40,24 @@
     <footer>
       <ul>
         <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <%#<li><a href="https://chat.clubnix.fr/">chat.clubnix.fr</a></li>%>
+        <li><a href="https://git.clubnix.fr/">git.clubnix.fr</a></li>
+        <%#<li><a href="https://docs.clubnix.fr/">docs.clubnix.fr</a></li>%>
       </ul>
       <ul>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://www.codecademy.com/">codecademy.com</a></li>
+        <li><a href="https://exercism.io/">exercism.io</a></li>
+        <li><a href="https://projecteuler.net/">projecteuler.net</a></li>
       </ul>
       <ul>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="http://web.archive.org/web/20160528105810/http://c.learncodethehardway.org/book/">c.learncodethehardway.org</a></li>
+        <li><a href="https://learncpp.com/">learncpp.com</a></li>
+        <li><a href="https://learnpythonthehardway.org/book/">learnpythonthehardway.org</a></li>
+        <li><a href="http://elixir-lang.org/getting-started/introduction.html">elixir-lang.org</a></li>
       </ul>
       <ul>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
-        <li><a href="https://www.clubnix.fr/">clubnix.fr</a></li>
+        <li><a href="https://linuxjourney.com/">linuxjourney.com</a></li>
+        <li><a href="https://overthewire.org/">overthewire.org</a></li>
       </ul>
     </footer>
   </div>
