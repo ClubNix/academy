@@ -3,6 +3,6 @@ defmodule Academy.PageControllerTest do
 
   test "GET /about", %{conn: conn} do
     conn = get conn, "/about"
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    assert html_response(conn, 200) =~ "Welcome to *Nix Academy"
   end
 end
