@@ -3,7 +3,7 @@ defmodule Academy.Mixfile do
 
   def project do
     [app: :academy,
-     version: "0.0.1",
+     version: "0.1.0",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -22,9 +22,9 @@ defmodule Academy.Mixfile do
   def application do
     [mod: {Academy, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
-                    :gettext, :phoenix_ecto, :postgrex, :guardian, :arc,
-                    :arc_ecto, :alchemic_avatar, :mailgun, :earmark, :conform,
-                    :conform_exrm, :runtime_tools]]
+                    :gettext, :phoenix_ecto, :postgrex, :eldap, :guardian,
+                    :arc, :arc_ecto, :alchemic_avatar, :mailgun, :earmark,
+                    :conform, :runtime_tools]]
   end
 
   # Specifies which paths to compile per environment.
@@ -51,9 +51,8 @@ defmodule Academy.Mixfile do
      {:mailgun, "~> 0.1.2"},
      {:earmark, "~> 1.0"},
      {:poison, "~> 2.1", override: true},
-     {:exrm, "~> 1.0", override: true},
+     {:distillery, "~> 0.9"},
      {:conform, "~> 2.0", override: true},
-     {:conform_exrm, "~> 1.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:inch_ex, "~> 0.5", only: [:dev, :test, :travis]},
      {:ex_doc, "~> 0.11", only: :dev}]

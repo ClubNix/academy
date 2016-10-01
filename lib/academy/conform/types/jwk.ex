@@ -1,4 +1,4 @@
-defmodule Conform.Types.JWK do
+defmodule Academy.Conform.Types.JWK do
   @moduledoc ~S"""
   Conform type for JSON Web key.
   """

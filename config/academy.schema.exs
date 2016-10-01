@@ -61,13 +61,13 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
       to: "logger.level",
       datatype: [enum: [:debug, :info, :warn, :error]]
     ],
-    "guardian.Elixir.Guardian.secret_key": [
-      commented: false,
-      datatype: Conform.Types.JWK,
-      doc: "A secret key to sign user session tokens. **MANDATORY**",
-      hidden: false,
-      to: "guardian.Elixir.Guardian.secret_key"
-    ],
+    #"guardian.Elixir.Guardian.secret_key": [
+      #commented: false,
+      #datatype: Academy.Conform.Types.JWK,
+      #doc: "A secret key to sign user session tokens. **MANDATORY**",
+      #hidden: false,
+      #to: "guardian.Elixir.Guardian.secret_key"
+    #],
     "academy.Elixir.Academy.Endpoint.http.port": [
       commented: false,
       datatype: :integer,
@@ -212,7 +212,7 @@ See the moduledoc for `Conform.Schema.Validator` for more details and examples.
     "academy.Elixir.Academy.Mailer.mail": [
       commented: false,
       datatype: :binary,
-      doc: "The mail to use when sending mails e.g. \"Awesomeness <awesomness@example.org>\"",
+      doc: "The mail to use when sending mails e.g. 'Awesomeness <awesomness@example.org>'",
       hidden: false,
       to: "academy.Elixir.Academy.Mailer.mail"
     ],

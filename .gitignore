@@ -14,7 +14,7 @@ node_modules/
 erl_crash.dump
 /priv/static/
 /config/*.secret.exs
-/rel
+/rel/academy
 
 
 ### Elixir ###

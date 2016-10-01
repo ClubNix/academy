@@ -22,7 +22,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :guardian, Guardian,
-  allowed_algos: ["HS512"], # optional
+  allowed_algos: ["ES512"], # optional
   verify_module: Guardian.JWT,  # optional
   issuer: "Academy",
   ttl: { 30, :days },
