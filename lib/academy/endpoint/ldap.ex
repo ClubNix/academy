@@ -26,23 +26,6 @@ defmodule Academy.Endpoint.LDAP do
   @type ldap_conn :: :eldap.handle
   @type auth_status :: :ok | {:error, atom}
 
-  unless Application.get_env(:academy, Academy.Endpoint.LDAP) do
-    raise "Please configure the LDAP in the config files"
-  end
-
-  @settings Application.get_env :academy, Academy.Endpoint.LDAP
-
-  unless Dict.get(@settings, :host) do
-    raise "I need a LDAP host to work. Please put it in the config files"
-  end
-
-  @host Dict.get(@settings, :host) |> :erlang.binary_to_list
-  @ssl  Dict.get(@settings, :ssl, false)
-  @port Dict.get(@settings, :port, 389)
-
-  @base  Dict.get(@settings, :base, "")        |> :erlang.binary_to_list
-  @where Dict.get(@settings, :where, "People") |> :erlang.binary_to_list
-
   @spec start_link() :: Genserver.on_start
 
   @doc ~S"""
@@ -65,37 +48,48 @@ defmodule Academy.Endpoint.LDAP do
   pass it we we need it.
   """
   def init(:ok) do
-    Logger.info("Connecting to ldap#{if @ssl, do: "s"}://#{@host}:#{@port}")
+
+    settings = Application.get_env :academy, Academy.Endpoint.LDAP
+
+    host = Dict.get(settings, :host) |> :erlang.binary_to_list
+    ssl  = Dict.get(settings, :ssl, false)
+    port = Dict.get(settings, :port, 389)
+
+    base  =  Dict.get(settings, :base, "")        |> :erlang.binary_to_list
+    where =  Dict.get(settings, :where, "People") |> :erlang.binary_to_list
+
+    Logger.info("Connecting to ldap#{if ssl, do: "s"}://#{host}:#{port}")
 
     :ssl.start
-    {:ok, ldap_conn} = :eldap.open([@host], ssl: @ssl, port: @port)
+    {:ok, ldap_conn} = :eldap.open([host], ssl: ssl, port: port)
     Logger.info("Connected to LDAP")
-    {:ok, ldap_conn}
+
+    {:ok, {ldap_conn, base, where}}
   end
 
   @type reason :: :normal | :shutdown | {:shutdown, term} | term
 
-  @spec terminate(reason, ldap_conn) :: :ok
+  @spec terminate(reason, {ldap_conn, list, list}) :: :ok
 
   @doc ~S"""
   Terminate the LDAP connection.
 
   Called by GenServer when the process is stopped.
   """
-  def terminate(_reason, ldap_conn) do
+  def terminate(_reason, {ldap_conn, base, where}) do
     :eldap.close(ldap_conn)
     Logger.info("Stopped LDAP")
   end
 
-  def handle_call({:authenticate, username, password}, _from, ldap_conn) do
+  def handle_call({:authenticate, username, password}, _from, {ldap_conn, base, where}) do
     status = :eldap.simple_bind(ldap_conn,
-     'uid=' ++ ldap_escape(username) ++ ',ou=' ++ @where ++ ',' ++ @base,
+     'uid=' ++ ldap_escape(username) ++ ',ou=' ++ where ++ ',' ++ base,
      password)
 
    case status do
-     :ok -> {:reply, status, ldap_conn}
-     {:error, :invalidCredentials} -> {:reply, {:error, :invalid_credentials}, ldap_conn}
-     {:error, :anonymous_auth} -> {:reply, status, ldap_conn}
+     :ok -> {:reply, status, {ldap_conn, base, where}}
+     {:error, :invalidCredentials} -> {:reply, {:error, :invalid_credentials}, {ldap_conn, base, where}}
+     {:error, :anonymous_auth} -> {:reply, status, {ldap_conn, base, where}}
     end
 
   end
