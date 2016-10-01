@@ -6,7 +6,16 @@ defmodule Academy.Router do
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug :put_secure_browser_headers,
+      %{"Content-Security-Policy"
+       => ~S(
+          default-src 'none';
+          script-src 'self' 'unsafe-inline';
+          connect-src 'self';
+          img-src 'self';
+          font-src 'self';
+          style-src 'self';
+        )}
   end
 
   pipeline :browser_auth do
