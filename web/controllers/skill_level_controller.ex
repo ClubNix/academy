@@ -53,18 +53,20 @@ defmodule Academy.SkillLevelController do
   end
 
   defp remove_level(user, skill_id) do
-    SkillLevel
-    |> where([], user_id: ^user.id, skill_id: ^skill_id)
-    |> Repo.delete_all
+    if find_skill_level(user, skill_id) do
+      SkillLevel
+      |> where([], user_id: ^user.id, skill_id: ^skill_id)
+      |> Repo.delete_all
+    end
   end
 
   defp add_level(user, skill_id, level) do
       case find_skill_level(user, skill_id) do
         nil -> Repo.insert(
-          SkillLevel.changeset(
-            %SkillLevel{level: level,
-                        user_id: user.id,
-                        skill_id: skill_id}, %{}))
+          SkillLevel.changeset(%SkillLevel{},
+                               %{user_id: user.id,
+                                 skill_id: skill_id,
+                                 level: level}))
         skill_level -> Repo.update(
           SkillLevel.changeset(skill_level, %{level: level}))
       end
