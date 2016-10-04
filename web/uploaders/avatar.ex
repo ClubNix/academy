@@ -9,6 +9,18 @@ defmodule Academy.Avatar do
   schema and adding `cast_attachments/3` to `Academy.User.changeset/2`.
   """
 
+  @doc ~S"""
+  Overriden function to get the url of a user's avatar.
+  """
+  def url(file, version, options) do
+    # Drop the absolute path
+    url = Arc.Actions.Url.url(__MODULE__, file, version, options)
+          |> Path.split
+          |> Enum.take(-3)
+
+    url = Path.join ["/" | url]
+  end
+
   use Arc.Definition
 
   # Include ecto support (requires package arc_ecto installed):
@@ -56,7 +68,12 @@ defmodule Academy.Avatar do
   and will be served by phoenix as the "/images/avatar" URI.
   """
   def storage_dir(_version, _file_and_scope) do
-    "priv/static/images/avatars/"
+    Path.join [
+      :code.priv_dir(:academy),
+      "static",
+      "images",
+      "avatars"
+    ]
   end
 
   @doc ~S"""
@@ -66,7 +83,7 @@ defmodule Academy.Avatar do
   avatar is created in the `Academy.UserController.create/1` function.
   """
   def default_url(_version, user) do
-    "priv/static/images/avatars/#{user.id}.png"
+    "/images/avatars/#{user.id}.png"
   end
 
 end

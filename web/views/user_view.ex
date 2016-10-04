@@ -97,12 +97,7 @@ defmodule Academy.UserView do
   Get the URI of the given user's avatar.
   """
   def avatar_url(user) do
-    # Drop the priv/static part
-    split_path = Avatar.url({user.avatar, user})
-    |> Path.split
-    |> Enum.drop(2)
-
-    Path.join ["/" | split_path]
+    Avatar.url({user.avatar, user})
   end
 
   @doc ~S"""
