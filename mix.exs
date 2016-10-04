@@ -24,7 +24,7 @@ defmodule Academy.Mixfile do
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
                     :gettext, :phoenix_ecto, :postgrex, :eldap, :guardian,
                     :arc, :arc_ecto, :alchemic_avatar, :mailgun, :earmark,
-                    :conform, :runtime_tools]]
+                    :runtime_tools]]
   end
 
   # Specifies which paths to compile per environment.
@@ -51,8 +51,7 @@ defmodule Academy.Mixfile do
      {:mailgun, "~> 0.1.2"},
      {:earmark, "~> 1.0"},
      {:poison, "~> 2.1", override: true},
-     {:distillery, "~> 0.9"},
-     {:conform, "~> 2.0", override: true},
+     {:distillery, "~> 0.10"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:inch_ex, "~> 0.5", only: [:dev, :test, :travis]},
      {:ex_doc, "~> 0.11", only: :dev}]

@@ -22,7 +22,9 @@ A member skill database
 
 To setup the database, see the "Run" section.
 
-- Ensure all dependencies are here and compile everything:
+- Configure with the prod environment in mind the `config/prod.exs` and
+  `config/prod.secret.exs` files.
+- Ensure that all dependencies are here, and compile everything:
 ```
 MIX_ENV=prod mix do deps.get, compile
 ```
@@ -31,18 +33,13 @@ MIX_ENV=prod mix do deps.get, compile
 node_modules/brunch/bin/brunch build --production
 MIX_ENV=prod mix phoenix.digest
 ```
-- Build and the configuration file
-```
-MIX_ENV=prod mix conform.configure
-```
 - Build the release tar
 ```
-MIX_ENV=prod mix release
+MIX_ENV=prod mix release --env=prod
 ```
 - Upload it to the server
 	- If it is the first time, unpack it wherever you want.
 	- If it is an upgrade, copy it to the "academy/releases/x.x.x/" folder (depending on the release version) and do `./bin/academy upgrade x.x.x` (hot code upgrade!)
-	- Edit `releases/x.x.x/academy.conf`
 	- Do `./bin/academy command Elixir.Release.Tasks migrate` to run database migrations.
 
 - Run it with `./bin/academy start` (`./bin/academy` to see available commands)
