@@ -67,7 +67,7 @@ form .invalid input[type="number"],
 form .invalid input[type="search"]
 	border-bottom: 3px solid error-color
 
-form input[type="submit"]
+form button[type="submit"]
 	accent()
 	title-font()
 	shadow-elevation-2dp()
@@ -82,10 +82,10 @@ form input[type="submit"]
 	border: none
 	outline: none
 
-form input[type="submit"]::-moz-focus-inner
+form button[type="submit"]::-moz-focus-inner
 	border: none
 
-form input[type="submit"]:focus
+form button[type="submit"]:focus
 	shadow-elevation-8dp()
 
 form textarea
