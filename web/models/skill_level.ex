@@ -33,7 +33,7 @@ defmodule Academy.SkillLevel do
     model
     |> cast(params, @fields)
     |> validate_required(@required_fields)
-    |> validate_number(:level, greater_than: 0, less_than: 5)
+    |> validate_number(:level, greater_than: 0, less_than_or_equal_to: 5)
     |> assoc_constraint(:user)
     |> assoc_constraint(:skill)
   end
