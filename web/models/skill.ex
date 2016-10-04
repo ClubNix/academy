@@ -22,7 +22,7 @@ defmodule Academy.Skill do
     timestamps
   end
 
-  @required_fields ~w(name description category_id)a
+  @required_fields ~w(name description)a
   @optional_fields ~w()
   @fields @required_fields ++ @optional_fields
 

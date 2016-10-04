@@ -4,4 +4,15 @@ defmodule Academy.SkillCategoryView do
   """
 
   use Academy.Web, :view
+
+  @doc ~S"""
+  Get the name of the given category, or "No category" if it is nil.
+  """
+  def name(category) do
+    case category do
+      nil -> "No category"
+      _ -> category.name
+    end
+  end
+
 end

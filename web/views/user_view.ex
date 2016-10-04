@@ -7,6 +7,7 @@ defmodule Academy.UserView do
 
   alias Academy.SessionController
   alias Academy.Avatar
+  alias Academy.SkillView
 
   use Phoenix.HTML
 
@@ -31,7 +32,7 @@ defmodule Academy.UserView do
   """
   def full_ratings(skill_levels) do
     skill_levels
-    |> Enum.group_by(fn skill_level -> skill_level.skill.category.name end)
+    |> Enum.group_by(fn skill_level -> SkillView.category_name(skill_level.skill) end)
     |> Enum.map(fn {category_name, skill_levels} ->
       skill_levels = Enum.sort(skill_levels, &(&1.level > &2.level))
       content_tag :div,

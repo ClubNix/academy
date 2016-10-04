@@ -1,11 +1,5 @@
-<%
-name = case @category do
-  nil -> "No category"
-  _   -> @category.name
-end
-%>
 <header>
-  <h2 class="category-name"><%= name %></h2>
+  <h2 class="category-name"><%= SkillCategoryView.name(@category) %></h2>
   <%= if @category do %>
     <div class="edit-buttons">
       <%= link "✎", to: skill_category_path(@conn, :edit, @category.id),
