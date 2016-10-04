@@ -1,23 +1,17 @@
 <section class="user-edit form">
   <h1>My Skills</h1>
 
-  <%= form_for @conn, skill_level_path(@conn, :update), [as: :skill_levels], fn _f -> %>
+  <%= form_for @conn, skill_level_path(@conn, :update), [as: :skill_levels], fn f -> %>
 
     <%= for {skill_category, skills} <- @skill_categories do %>
-      <%
-      name = case skill_category do
-        nil -> "No category"
-        _   -> skill_category.name
-      end
-      %>
-      <h2><%= name %></h2>
+      <h2><%= SkillCategoryView.name(skill_category) %></h2>
       <table class="skills">
         <%= for skill <- skills do %>
           <tr class="input">
             <td class="name tooltip" data-tooltip="<%= skill.description %>">
               <%= rating_label skill %>
             </td>
-            <td class="value"><%= rating_input @user, skill %></td>
+            <td class="value"><%= rating_input f, @user, skill %></td>
           </tr>
         <% end %>
       </table>
