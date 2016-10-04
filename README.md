@@ -35,7 +35,7 @@ MIX_ENV=prod mix phoenix.digest
 ```
 - Build the release tar
 ```
-MIX_ENV=prod mix release --env=prod
+MIX_ENV=prod mix release --env=prod [--upgrade]
 ```
 - Upload it to the server
 	- If it is the first time, unpack it wherever you want.
