@@ -18,7 +18,7 @@ defmodule Academy.SkillLevelTest do
 
   test "level between 0 and 5" do
     attrs = %{@valid_attrs | level: 42}
-    assert {:level, {"must be less than %{number}", number: 5}} in errors_on(%SkillLevel{}, attrs)
+    assert {:level, {"must be less than or equal to %{number}", number: 5}} in errors_on(%SkillLevel{}, attrs)
 
     attrs = %{@valid_attrs | level: -1}
     assert {:level, {"must be greater than %{number}", number: 0}} in errors_on(%SkillLevel{}, attrs)

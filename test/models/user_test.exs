@@ -16,12 +16,20 @@ defmodule Academy.UserTest do
     refute changeset.valid?
   end
 
-  test "bio between 10 and 140 characters" do
+  test "allow empty bio" do
     attrs = Map.put(@valid_attrs, :bio, "")
+    assert User.changeset(%User{}, attrs).valid?
+  end
+
+  test "bio between 10 and 140 characters" do
+    attrs = Map.put(@valid_attrs, :bio, "a")
     assert {:bio, {"should be at least %{count} character(s)", count: 10}} in errors_on(%User{}, attrs)
 
     attrs = Map.put(@valid_attrs, :bio, String.duplicate("a", 500))
     assert {:bio, {"should be at most %{count} character(s)", count: 140}} in errors_on(%User{}, attrs)
+
+    attrs = Map.put(@valid_attrs, :bio, String.duplicate("a", 50))
+    assert User.changeset(%User{}, attrs).valid?
   end
 
   test "email must be valid" do
@@ -76,8 +84,8 @@ defmodule Academy.UserTest do
     assert {:github_username, {"does not look like a Github username", []}} in errors_on(%User{}, attrs)
   end
 
-  test "github username may not be empty" do
+  test "github username may be empty" do
     attrs = Map.put(@valid_attrs, :github_username, "")
-    assert {:github_username, {"does not look like a Github username", []}} in errors_on(%User{}, attrs)
+    assert User.changeset(%User{}, attrs).valid?
   end
 end

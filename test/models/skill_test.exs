@@ -16,8 +16,13 @@ defmodule Academy.SkillTest do
     refute changeset.valid?
   end
 
-  test "description between 10 and 50 characters" do
+  test "description may not be empty" do
     attrs = %{@valid_attrs | description: ""}
+    assert {:description, {"can't be blank", []}} in errors_on(%Skill{}, attrs)
+  end
+
+  test "description between 10 and 50 characters" do
+    attrs = %{@valid_attrs | description: "a"}
     assert {:description, {"should be at least %{count} character(s)", count: 10}} in errors_on(%Skill{}, attrs)
 
     attrs = %{@valid_attrs | description: String.duplicate("a", 500)}
