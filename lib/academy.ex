@@ -5,6 +5,8 @@ defmodule Academy do
 
   use Application
 
+  require Prometheus.Registry
+
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
@@ -23,6 +25,13 @@ defmodule Academy do
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Academy.Supervisor]
+
+    Academy.Metrics.PhoenixInstrumenter.setup()
+    Academy.Metrics.PipelineInstrumenter.setup()
+    Academy.Metrics.RepoInstrumenter.setup()
+    Prometheus.Registry.register_collector(:prometheus_process_collector)
+    Academy.Metrics.PrometheusExporter.setup()
+
     Supervisor.start_link(children, opts)
   end
 

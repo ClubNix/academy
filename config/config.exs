@@ -14,7 +14,8 @@ config :academy, Academy.Endpoint,
   secret_key_base: "EXmrrXmAac2VyZegEbEWcxGGtoJFYWKHfOnD7+Po31+nY03uUbng1ajttjEHwuux",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Academy.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  instrumenters: [Academy.Metrics.PhoenixInstrumenter]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -41,6 +42,25 @@ config :alchemic_avatar,
 config :academy, Academy.Mailer.Limits,
   count: 10,
   every: 60
+
+config :prometheus, Academy.Metrics.PhoenixInstrumenter,
+  controller_call_labels: [:controller, :action],
+  duration_buckets: [10, 25, 50, 100, 250, 500, 1000, 2500, 5000,
+                     10_000, 25_000, 50_000, 100_000, 250_000, 500_000,
+                     1_000_000, 2_500_000, 5_000_000, 10_000_000],
+  registry: :default,
+  duration_unit: :microseconds
+
+config :prometheus, Academy.Metrics.PipelineInstrumenter,
+  labels: [:status_class, :method, :host, :scheme, :request_path],
+  duration_buckets: [10, 100, 1_000, 10_000, 100_000,
+                     300_000, 500_000, 750_000, 1_000_000,
+                     1_500_000, 2_000_000, 3_000_000],
+  registry: :default,
+  duration_unit: :microseconds
+
+config :academy, Academy.Repo,
+  loggers: [Academy.Metrics.RepoInstrumenter]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

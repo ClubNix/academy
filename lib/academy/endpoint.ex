@@ -35,5 +35,10 @@ defmodule Academy.Endpoint do
     key: "_academy_key",
     signing_salt: "4af2PQbo"
 
+  # makes the /metrics URL happen
+  plug Academy.Metrics.PrometheusExporter
+  # measures pipeline exec times
+  plug Academy.Metrics.PipelineInstrumenter
+
   plug Academy.Router
 end
